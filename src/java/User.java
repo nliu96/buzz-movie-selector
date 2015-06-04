@@ -63,7 +63,7 @@ public class User implements Serializable {
             return null;
         }
         System.out.println("Login Success");
-            return "welcome";
+            return "welcome.xhtml";
     }
     
     public String logout() {
