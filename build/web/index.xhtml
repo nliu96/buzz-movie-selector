@@ -7,33 +7,17 @@
     <h:head>
         <title>Buzz-Movie Selector</title>
     </h:head>
-    <body>
-        <h:form>       
-            <p:panel id="panel" header="Login to Application">
-                <p:messages id="msgs" />
-                <h:panelGrid columns="3" cellpadding="5">
-                    <p:outputLabel for="username" value="User Name:" />
-                    <p:inputText id="username" value="#{user.username}" 
-                                 required="true" label="Username">
-                        <f:validateLength minimum="2"/>
-                    </p:inputText>
-                        
-                    <p:message for="username" display="icon" />
-                    
-                    <p:outputLabel for="password" value="Password:" />
-                    <p:password id="password" value="#{user.password}" 
-                                label="Password" required="true" 
-                                feedback="true">
-                        <f:validateLength minimum="2" />
-                    </p:password>
-                    
-                    <p:message for="password" display="Text" />
-                </h:panelGrid>
-               
-                <p:commandButton update="panel" value="Submit" action="#{user.login()}" 
-                             icon="ui-icon-check" />
-                
-            </p:panel>  
-        </h:form>
-    </body>
+    <h:form>
+    <p:growl id="growl" life="2000" />
+     
+    <p:commandButton value="Ajax Submit" id="ajax" update="growl" actionListener="#{buttonView.buttonAction}" styleClass="ui-priority-primary" />
+ 
+    <p:commandButton value="Non-Ajax Submit" id="nonAjax" actionListener="#{buttonView.buttonAction}" ajax="false" />
+ 
+    <p:commandButton value="With Icon" id="withIcon" actionListener="#{buttonView.buttonAction}" update="growl" icon="ui-icon-disk" />
+ 
+    <p:commandButton actionListener="#{buttonView.buttonAction}" id="iconOnly" update="growl" icon="ui-icon-disk" title="Icon Only" />
+ 
+    <p:commandButton value="Disabled" id="disabled" disabled="true" />
+</h:form>
 </html>
