@@ -66,6 +66,10 @@ public class User implements Serializable {
             return "welcome";
     }
     
+    public String logout() {
+        return "index";
+    }
+    
     public void setUserManager(UserManager um) {
         userManager = um;
     }
