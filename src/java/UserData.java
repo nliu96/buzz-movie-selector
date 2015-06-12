@@ -10,13 +10,24 @@
  */
 class UserData {
     private String name;
+    private String username;
     private String password;
     private String email;
     private String address;
     
-    UserData(String nm, String ps) {
-        name = nm;
+    UserData(String em, String n, String usnm, String ps) {
+        email = em;
+        name = n;
+        username = usnm;
         password = ps;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public String getEmail() {
+        return email;
     }
     
     boolean checkLogin(String p) {

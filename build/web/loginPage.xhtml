@@ -22,8 +22,7 @@
                     
                     <p:outputLabel for="password" value="Password:" />
                     <p:password id="password" value="#{user.password}" 
-                                label="Password" required="true" 
-                                feedback="true">
+                                label="Password" required="true" feedback="true">
                         <f:validateLength minimum="2" />
                     </p:password>
                     
@@ -31,9 +30,10 @@
                 </h:panelGrid>
                
                 <p:commandButton update="panel" value="Submit" action="#{user.login()}"/>
-                <p:commandButton update="panel" value="Register"/>
+                <p:button outcome="index.xhtml" value="Cancel"/>
                 
             </p:panel>  
         </h:form>
     </h:body>
+    
 </html>

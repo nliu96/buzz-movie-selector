@@ -18,7 +18,6 @@ import javax.faces.bean.ApplicationScoped;
 public class UserManager {
     
     private Map<String, UserData> users = new HashMap<>();
-
     /**
      * Creates a new instance of UserManager
      */
@@ -28,13 +27,16 @@ public class UserManager {
     }
 
     private void makeSomeUsers() {
-        users.put("user", new UserData("user", "pass"));
-  
+        users.put("user", new UserData("nliu41@gatech.edu", "Admin", "user", "pass"));
+    }
+    
+    public void addUser(String email, String name, String username, String password) {
+        users.put(username, new UserData(email, name, username, password));
     }
 
     UserData find(String username) {
        System.out.println("Looking up user: " + username);
        return users.get(username);
     }
-    
+  
 }
