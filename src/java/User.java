@@ -69,5 +69,10 @@ public class User implements Serializable {
     public void setUserManager(UserManager um) {
         userManager = um;
     }
+    
+    public String register() {
+        userManager.addUser(username, password);
+        return "loginPage.xhtml";
+    }
 
 }
