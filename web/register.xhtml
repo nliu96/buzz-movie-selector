@@ -8,10 +8,26 @@
         <title>Register</title>
     </h:head>
     <h:body>
-        <h:form>       
+        <h:form>
             <p:panel id="panel" header="Register for Buzz-Movie Selector">
                 <p:messages id="msgs"/>
                 <h:panelGrid columns="3" cellpadding="5">
+                    <p:outputLabel for="email" value="Email:" />
+                    <p:inputText id="email" value="#{user.email}" 
+                                 required="true" label="name">
+                        <f:validateLength minimum="2"/>
+                    </p:inputText>
+                        
+                    <p:message for="email" display="icon" />
+                    
+                    <p:outputLabel for="name" value="Name:" />
+                    <p:inputText id="name" value="#{user.name}" 
+                                 required="true" label="name">
+                        <f:validateLength minimum="2"/>
+                    </p:inputText>
+                        
+                    <p:message for="name" display="icon" />
+                    
                     <p:outputLabel for="username" value="User Name:" />
                     <p:inputText id="username" value="#{user.username}" 
                                  required="true" label="Username">
@@ -30,7 +46,7 @@
                     <p:message for="password" display="Text" />
                 </h:panelGrid>
                
-                <p:commandButton update="panel" value="Register" action="#{user.regsiter()}"/>
+                <p:commandButton update="panel" value="Register" action="#{user.register()}"/>
                 <p:button outcome="index.xhtml" value="Cancel"/>
                 
             </p:panel>  

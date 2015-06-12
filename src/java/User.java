@@ -18,18 +18,28 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @SessionScoped
 public class User implements Serializable {
+    private String email;
+    private String name;
     private String username;
     private String password;
     
     @ManagedProperty("#{userManager}")
     private UserManager userManager;
     
-
+    
     /**
      * Creates a new instance of User
      */
     public User() {
         System.out.println("Making user");
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+    
+    public String getName() {
+        return name;
     }
     
     public String getUsername() { 
@@ -41,7 +51,7 @@ public class User implements Serializable {
     }
     
     public void setUsername(String u) {
-        System.out.println("Setting name to " + u);
+        System.out.println("Setting username to " + u);
         username = u;
     }
     
@@ -49,6 +59,26 @@ public class User implements Serializable {
         System.out.println("Setting password to " + p);
         password = p;
     }
+    
+    public void setName(String n) {
+        System.out.println("Setting name to " + n);
+        name = n;
+    }
+    
+    public void setEmail(String em) {
+        System.out.println("Setting email to " + em);
+    }
+    
+    public void setUserData() {
+        UserData current = userManager.find(username);
+        setName(current.getName());
+        setEmail(current.getEmail());
+    }
+    
+    public void editProfile() {
+        
+    }
+    
     
     public String login() {
         System.out.println("Doing some business logic here");
@@ -62,8 +92,9 @@ public class User implements Serializable {
             context.addMessage(null, new FacesMessage("Username or Password incorrect"));
             return null;
         }
+        setUserData();
         System.out.println("Login Success");
-            return "welcome.xhtml";
+        return "welcome.xhtml";
     }
     
     public void setUserManager(UserManager um) {
@@ -71,8 +102,8 @@ public class User implements Serializable {
     }
     
     public String register() {
-        userManager.addUser(username, password);
-        return "loginPage.xhtml";
+        userManager.addUser(email, name, username, password);
+        return "welcome.xhtml";
     }
 
 }
