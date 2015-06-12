@@ -31,6 +31,10 @@ public class UserManager {
         users.put("user", new UserData("user", "pass"));
   
     }
+    
+    public void addUser(String username, String password) {
+        users.put(username, new UserData(username, password));
+    }
 
     UserData find(String username) {
        System.out.println("Looking up user: " + username);

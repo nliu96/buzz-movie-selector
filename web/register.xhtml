@@ -5,11 +5,11 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Welcome</title>
+        <title>Register</title>
     </h:head>
     <h:body>
         <h:form>       
-            <p:panel id="panel" header="Login to Buzz-Movie Selector">
+            <p:panel id="panel" header="Register for Buzz-Movie Selector">
                 <p:messages id="msgs"/>
                 <h:panelGrid columns="3" cellpadding="5">
                     <p:outputLabel for="username" value="User Name:" />
@@ -30,7 +30,7 @@
                     <p:message for="password" display="Text" />
                 </h:panelGrid>
                
-                <p:commandButton update="panel" value="Submit" action="#{user.login()}"/>
+                <p:commandButton update="panel" value="Register" action="#{user.regsiter()}"/>
                 <p:button outcome="index.xhtml" value="Cancel"/>
                 
             </p:panel>  
