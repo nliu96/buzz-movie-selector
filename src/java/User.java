@@ -63,15 +63,16 @@ public class User implements Serializable {
             return null;
         }
         System.out.println("Login Success");
-            return "welcome";
-    }
-    
-    public String logout() {
-        return "index";
+            return "welcome.xhtml";
     }
     
     public void setUserManager(UserManager um) {
         userManager = um;
+    }
+    
+    public String register() {
+        userManager.addUser(username, password);
+        return "loginPage.xhtml";
     }
 
 }
