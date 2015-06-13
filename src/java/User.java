@@ -22,6 +22,9 @@ public class User implements Serializable {
     private String name;
     private String username;
     private String password;
+    private UserData data;
+    private String major;
+    private String interests;
     
     @ManagedProperty("#{userManager}")
     private UserManager userManager;
@@ -50,6 +53,10 @@ public class User implements Serializable {
         return password;
     }
     
+    public String getMajor() {
+        return major;
+    }
+    
     public void setUsername(String u) {
         System.out.println("Setting username to " + u);
         username = u;
@@ -67,12 +74,23 @@ public class User implements Serializable {
     
     public void setEmail(String em) {
         System.out.println("Setting email to " + em);
+        email = em;
     }
     
-    public void setUserData() {
-        UserData current = userManager.find(username);
-        setName(current.getName());
-        setEmail(current.getEmail());
+    public void setInterests(String i) {
+        interests = i;
+    }
+    
+        public void setMajor(String m) {
+        major = m;
+    }
+        
+    public void setData(String username) {
+        UserData ud = userManager.find(username);
+        setMajor(ud.getMajor());
+        setName(ud.getName());
+        setEmail(ud.getEmail());
+        setInterests(ud.getInterests());
     }
     
     public void editProfile() {
@@ -83,7 +101,6 @@ public class User implements Serializable {
     public String login() {
         System.out.println("Doing some business logic here");
         UserData data = userManager.find(username);
-        
         if (data == null || !data.checkLogin(password)) {
             username="";
             password="";
@@ -92,10 +109,11 @@ public class User implements Serializable {
             context.addMessage(null, new FacesMessage("Username or Password incorrect"));
             return null;
         }
-        setUserData();
         System.out.println("Login Success");
+        setData(username);
         return "welcome.xhtml";
     }
+
     
     public void setUserManager(UserManager um) {
         userManager = um;
