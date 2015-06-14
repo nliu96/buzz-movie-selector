@@ -18,6 +18,7 @@ import javax.faces.bean.ApplicationScoped;
 public class UserManager {
     
     private Map<String, UserData> users = new HashMap<>();
+    
     /**
      * Creates a new instance of UserManager
      */

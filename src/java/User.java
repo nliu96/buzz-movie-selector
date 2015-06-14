@@ -25,10 +25,11 @@ public class User implements Serializable {
     private UserData data;
     private String major;
     private String interests;
+    private String newUsername;
+    private String newPassword;
     
     @ManagedProperty("#{userManager}")
     private UserManager userManager;
-    
     
     /**
      * Creates a new instance of User
@@ -49,12 +50,24 @@ public class User implements Serializable {
         return username;
     }
     
+    public String getNewUsername() {
+        return newUsername;
+    }
+    
     public String getPassword() {
         return password;
     }
     
+    public String getNewPassword() {
+        return newPassword;
+    }
+    
     public String getMajor() {
         return major;
+    }
+    
+    public String getInterests() {
+        return interests;
     }
     
     public void setUsername(String u) {
@@ -65,6 +78,14 @@ public class User implements Serializable {
     public void setPassword(String p) {
         System.out.println("Setting password to " + p);
         password = p;
+    }
+    
+    public void setNewPassword(String np) {
+        newPassword = np;
+    }
+    
+    public void setNewUsername(String nun) {
+        newUsername = nun;
     }
     
     public void setName(String n) {
@@ -81,22 +102,41 @@ public class User implements Serializable {
         interests = i;
     }
     
-        public void setMajor(String m) {
+    public void setMajor(String m) {
         major = m;
     }
         
     public void setData(String username) {
+        this.data = userManager.find(username);
+        setMajor(data.getMajor());
+        setName(data.getName());
+        setEmail(data.getEmail());
+        setInterests(data.getInterests());
+    }
+    
+    public String editPassword() {
+        setPassword(newPassword);
+        data.setPassword(newPassword);
+        return "profile.xhtml";
+    }
+    
+    public String editUsername() {
+        setUsername(newUsername);
+        data.setUsername(newUsername);
+        return "profile.xhtml";
+    }
+    
+    public String editProfile() {
         UserData ud = userManager.find(username);
-        setMajor(ud.getMajor());
-        setName(ud.getName());
-        setEmail(ud.getEmail());
-        setInterests(ud.getInterests());
+        ud.setMajor(major);
+        ud.setMajor(interests);
+        return "profile.xhtml";
     }
     
-    public void editProfile() {
-        
+    public String cancelChanges() {
+        setData(username);
+        return "profile.xhtml";
     }
-    
     
     public String login() {
         System.out.println("Doing some business logic here");
@@ -123,5 +163,4 @@ public class User implements Serializable {
         userManager.addUser(email, name, username, password);
         return "welcome.xhtml";
     }
-
 }

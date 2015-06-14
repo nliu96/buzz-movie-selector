@@ -3,9 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/theaz_000/Documents/School/Year1Sum/CS%202340/buzz-movie-selector/src/java/User.java</file>
-            <file>file:/C:/Users/theaz_000/Documents/School/Year1Sum/CS%202340/buzz-movie-selector/web/index.xhtml</file>
-            <file>file:/C:/Users/theaz_000/Documents/School/Year1Sum/CS%202340/buzz-movie-selector/web/welcome.xhtml</file>
+            <file>file:/C:/Users/theaz_000/Documents/School/Year1Sum/CS%202340/project/buzz-movie-selector/web/loginPage.xhtml</file>
+            <file>file:/C:/Users/theaz_000/Documents/School/Year1Sum/CS%202340/project/buzz-movie-selector/web/profile.xhtml</file>
+            <file>file:/C:/Users/theaz_000/Documents/School/Year1Sum/CS%202340/project/buzz-movie-selector/web/usernameChange.xhtml</file>
+            <file>file:/C:/Users/theaz_000/Documents/School/Year1Sum/CS%202340/project/buzz-movie-selector/web/welcome.xhtml</file>
+            <file>file:/C:/Users/theaz_000/Documents/School/Year1Sum/CS%202340/project/buzz-movie-selector/src/java/UserData.java</file>
+            <file>file:/C:/Users/theaz_000/Documents/School/Year1Sum/CS%202340/project/buzz-movie-selector/web/index.xhtml</file>
+            <file>file:/C:/Users/theaz_000/Documents/School/Year1Sum/CS%202340/project/buzz-movie-selector/src/java/org/primefaces/showcase/view/input/InputTextareaView.java</file>
+            <file>file:/C:/Users/theaz_000/Documents/School/Year1Sum/CS%202340/project/buzz-movie-selector/web/editProfile.xhtml</file>
+            <file>file:/C:/Users/theaz_000/Documents/School/Year1Sum/CS%202340/project/buzz-movie-selector/web/register.xhtml</file>
+            <file>file:/C:/Users/theaz_000/Documents/School/Year1Sum/CS%202340/project/buzz-movie-selector/src/java/User.java</file>
+            <file>file:/C:/Users/theaz_000/Documents/School/Year1Sum/CS%202340/project/buzz-movie-selector/web/passwordChange.xhtml</file>
         </group>
     </open-files>
 </project-private>

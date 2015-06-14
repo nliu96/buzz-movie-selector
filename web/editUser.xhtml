@@ -14,11 +14,18 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="mystyle.css"/>
     </h:head>
     <h:body>
-        <p:tabMenu activeIndex="0">
-            <p:menuitem value="Welcome" outcome="welcome.xhtml"/>
-            <p:menuitem value="Profile" outcome="profile.xhtml"/>
-            <p:menuitem value="Logout" outcome="index.xhtml"/>
-        </p:tabMenu>
-        
+        <h:form>
+            <p:messages id="messages" showDetail="true" autoUpdate="true" />
+            
+            <h:panelGrid columns="2" id="matchGrid" cellpadding="5">                   
+                <p:inputText value="#{user.newUsername}"/>
+            </h:panelGrid>
+            
+            <p:commandButton value="Submit" action="#{user.editUsername()}" icon="ui-icon-check" />
+            <p:button value="Cancel" outcome="profile.xhtml" icon="ui-icon-close" />
+        </h:form>
     </h:body>
 </html>
+
+
+

@@ -11,6 +11,7 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>My Profile</title>
+        <link rel="stylesheet" type="text/css" href="mystyle.css"/>
     </h:head>
     <h:body>
         <p:tabMenu activeIndex="1">
@@ -19,27 +20,27 @@ and open the template in the editor.
             <p:menuitem value="Logout" outcome="index.xhtml" style="float:right;"/>
         </p:tabMenu>
         
-        <p:link outcome="editProfile.xhtml" value="Edit" style='float:right; text-decoration: none;'>
-            <f:param name="productId" value="10" />
-        </p:link>
+        <p:button outcome="editPass" value="Edit Password" style='float:right;margin-top:10px'/>  
+        <p:button outcome="editUser.xhtml" value="Edit Username" style='float:right;margin-top:10px'/>
+        <p:button outcome="editProfile.xhtml" value="Edit Profile" style='float:right;margin-top:10px'/>
         
         <h:form style="padding-top:20px">
             <p:growl id="msgs" showDetail="true" />
 
-            <p:fieldset legend="#{user.getName()}" style="margin-bottom:20px">
+            <p:fieldset legend="#{user.getName()}" style="margin-top:30px;margin-bottom:20px">
                 <h:panelGrid columns="2" cellpadding="5">
                     <h:outputText
                         value="Current username:#{user.username}" />
                     <h:outputText
-                        value="current password is #{user.password}" />
+                        value="Current password:#{user.password}" />
+                    <p>Current major is #{user.major}</p>
                 </h:panelGrid>
             </p:fieldset>
 
             <p:fieldset legend="Interests" toggleable="true" toggleSpeed="500">
                 <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" update="msgs" />
                 <h:panelGrid columns="2" cellpadding="5">
-                    <p:graphicImage name="image" />
-                    <h:outputText value="blahblah"></h:outputText>
+                    <h:outputText value="#{user.interests}"></h:outputText>
                 </h:panelGrid>
             </p:fieldset>
         </h:form>
