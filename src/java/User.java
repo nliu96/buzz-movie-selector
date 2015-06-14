@@ -22,10 +22,14 @@ public class User implements Serializable {
     private String name;
     private String username;
     private String password;
+    private UserData data;
+    private String major;
+    private String interests;
+    private String newUsername;
+    private String newPassword;
     
     @ManagedProperty("#{userManager}")
     private UserManager userManager;
-    
     
     /**
      * Creates a new instance of User
@@ -46,8 +50,24 @@ public class User implements Serializable {
         return username;
     }
     
+    public String getNewUsername() {
+        return newUsername;
+    }
+    
     public String getPassword() {
         return password;
+    }
+    
+    public String getNewPassword() {
+        return newPassword;
+    }
+    
+    public String getMajor() {
+        return major;
+    }
+    
+    public String getInterests() {
+        return interests;
     }
     
     public void setUsername(String u) {
@@ -60,6 +80,14 @@ public class User implements Serializable {
         password = p;
     }
     
+    public void setNewPassword(String np) {
+        newPassword = np;
+    }
+    
+    public void setNewUsername(String nun) {
+        newUsername = nun;
+    }
+    
     public void setName(String n) {
         System.out.println("Setting name to " + n);
         name = n;
@@ -67,23 +95,52 @@ public class User implements Serializable {
     
     public void setEmail(String em) {
         System.out.println("Setting email to " + em);
+        email = em;
     }
     
-    public void setUserData() {
-        UserData current = userManager.find(username);
-        setName(current.getName());
-        setEmail(current.getEmail());
+    public void setInterests(String i) {
+        interests = i;
     }
     
-    public void editProfile() {
+    public void setMajor(String m) {
+        major = m;
+    }
         
+    public void setData(String username) {
+        this.data = userManager.find(username);
+        setMajor(data.getMajor());
+        setName(data.getName());
+        setEmail(data.getEmail());
+        setInterests(data.getInterests());
     }
     
+    public String editPassword() {
+        setPassword(newPassword);
+        data.setPassword(newPassword);
+        return "profile.xhtml";
+    }
+    
+    public String editUsername() {
+        setUsername(newUsername);
+        data.setUsername(newUsername);
+        return "profile.xhtml";
+    }
+    
+    public String editProfile() {
+        UserData ud = userManager.find(username);
+        ud.setMajor(major);
+        ud.setMajor(interests);
+        return "profile.xhtml";
+    }
+    
+    public String cancelChanges() {
+        setData(username);
+        return "profile.xhtml";
+    }
     
     public String login() {
         System.out.println("Doing some business logic here");
         UserData data = userManager.find(username);
-        
         if (data == null || !data.checkLogin(password)) {
             username="";
             password="";
@@ -92,10 +149,11 @@ public class User implements Serializable {
             context.addMessage(null, new FacesMessage("Username or Password incorrect"));
             return null;
         }
-        setUserData();
         System.out.println("Login Success");
+        setData(username);
         return "welcome.xhtml";
     }
+
     
     public void setUserManager(UserManager um) {
         userManager = um;
@@ -105,5 +163,4 @@ public class User implements Serializable {
         userManager.addUser(email, name, username, password);
         return "welcome.xhtml";
     }
-
 }

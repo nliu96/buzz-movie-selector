@@ -13,13 +13,36 @@ class UserData {
     private String username;
     private String password;
     private String email;
-    private String address;
+    private String major;
+    private String interests;
     
-    UserData(String em, String n, String usnm, String ps) {
+    public UserData(String em, String n, String usnm, String ps) {
         email = em;
         name = n;
         username = usnm;
         password = ps;
+        major = "Not selected";
+        interests = "None";
+    }
+    
+    public void setName(String n) {
+        name = n;
+    }
+    
+    public void setEmail(String em) {
+        email = em;
+    }
+    
+    public void setUsername(String un) {
+        username = un;
+    }
+    
+    public void setMajor(String m) {
+        major = m;
+    }
+    
+    public void setPassword(String pw) {
+        password = pw;
     }
     
     public String getName() {
@@ -29,9 +52,20 @@ class UserData {
     public String getEmail() {
         return email;
     }
+
+    public String getMajor() {
+        return major;
+    }
+    
+    public String getInterests() {
+        return interests;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
     
     boolean checkLogin(String p) {
         return p.equals(password);
     }
-    
 }

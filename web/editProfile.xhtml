@@ -11,6 +11,7 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Welcome</title>
+        <link rel="stylesheet" type="text/css" href="mystyle.css"/>
     </h:head>
     <h:body>
         <p:tabMenu activeIndex="1">
@@ -19,11 +20,11 @@ and open the template in the editor.
             <p:menuitem value="Logout" outcome="index.xhtml"/>
         </p:tabMenu>
         <h:form>
-            <p:messages autoUpdate="true" />
-
+            <p:messages id="messages" showDetail="true" autoUpdate="true" />
+            
             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                 <p:outputLabel for="console" value="Major:" />
-                <p:selectOneMenu id="console" value="#{selectOneMenuView.console}" style="width:125px">
+                <p:selectOneMenu id="console" value="#{user.major}" style="width:125px">
                     <f:selectItem itemLabel="Select One" itemValue="" />
                     <f:selectItem itemLabel="CS" itemValue="CS" />
                     <f:selectItem itemLabel="EE" itemValue="EE" />
@@ -35,9 +36,15 @@ and open the template in the editor.
                     <f:selectItem itemLabel="ChemE" itemValue="ChemE" />
                 </p:selectOneMenu>
                 
-                <p:commandButton value="Submit" oncomplete="#{user.editProfile()}" icon="ui-icon-check" />
             </h:panelGrid>
 
+            <h3>Remaining Chars</h3>
+                <p:inputTextarea rows="5" cols="30" counter="display" maxlength="200" value="#{user.interests}" 
+                                 counterTemplate="{0} characters remaining." autoResize="false" />
+            <h:outputText id="display" />
+
+            <p:commandButton value="Submit" action="#{user.editProfile()}" icon="ui-icon-check" />
+            <p:commandButton value="Cancel" action="#{user.cancelChanges()}" icon="ui-icon-close" />
         </h:form>
     </h:body>
 </html>
