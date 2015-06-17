@@ -121,6 +121,7 @@ public class User implements Serializable {
     }
     
     public String editUsername() {
+        userManager.addUser(username, newUsername);
         setUsername(newUsername);
         data.setUsername(newUsername);
         return "profile.xhtml";
@@ -129,7 +130,7 @@ public class User implements Serializable {
     public String editProfile() {
         UserData ud = userManager.find(username);
         ud.setMajor(major);
-        ud.setMajor(interests);
+        ud.setInterests(interests);
         return "profile.xhtml";
     }
     
@@ -151,9 +152,13 @@ public class User implements Serializable {
         }
         System.out.println("Login Success");
         setData(username);
-        return "welcome.xhtml";
+        return "welcome.xhtml?faces-redirect=true";
     }
 
+    public String logOut() {
+        setData(null);
+        return "index.html?faces-redirect=true";
+    }
     
     public void setUserManager(UserManager um) {
         userManager = um;

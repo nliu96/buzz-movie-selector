@@ -21,7 +21,7 @@ class UserData {
         name = n;
         username = usnm;
         password = ps;
-        major = "Not selected";
+        major = "Select One";
         interests = "None";
     }
     
@@ -43,6 +43,10 @@ class UserData {
     
     public void setPassword(String pw) {
         password = pw;
+    }
+    
+    public void setInterests(String i) {
+        interests = i;
     }
     
     public String getName() {

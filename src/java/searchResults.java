@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class searchResults {
     private String total;
     ArrayList<Movie> movies;
-    private String links;
+    private Link links;
     private String link_Template;
     
     
