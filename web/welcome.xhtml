@@ -14,12 +14,13 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="mystyle.css"/>
     </h:head>
     <h:body>
-        <p:tabMenu activeIndex="0">
-            <p:menuitem value="Welcome" outcome="welcome.xhtml?faces-redirect=true"/>
-            <p:menuitem value="Search" outcome="search.xhtml?faces-redirect=true"/>
-            <p:menuitem value="Profile" outcome="profile.xhtml?faces-redirect=true"/>
-            <p:menuitem value="Logout" outcome="index.xhtmlfaces-redirect=true"/>
-        </p:tabMenu>
-        
+        <h:form>
+            <p:tabMenu activeIndex="0">
+                <p:menuitem value="Welcome" outcome="welcome.xhtml?faces-redirect=true"/>
+                <p:menuitem value="Search" outcome="search.xhtml?faces-redirect=true"/>
+                <p:menuitem value="Profile" outcome="profile.xhtml?faces-redirect=true"/>
+                <p:menuitem value="Logout" ajax="false" action="#{user.logOut()}"/>
+            </p:tabMenu>
+        </h:form>
     </h:body>
 </html>
