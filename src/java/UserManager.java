@@ -31,8 +31,19 @@ public class UserManager {
         users.put("user", new UserData("nliu41@gatech.edu", "Admin", "user", "pass"));
     }
     
+    public void addUser(String oldName, String newName) {
+        UserData data = users.get(oldName);
+        users.remove(oldName);
+        users.put(newName, data);   
+    }
+    
     public void addUser(String email, String name, String username, String password) {
         users.put(username, new UserData(email, name, username, password));
+    }
+    
+    public void editUserData(String username, UserData data) {
+        users.remove(username);
+        users.put(username, data);
     }
 
     UserData find(String username) {
