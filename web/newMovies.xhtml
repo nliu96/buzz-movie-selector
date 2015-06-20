@@ -10,12 +10,12 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Search</title>
+        <title>New Movies</title>
         <link rel="stylesheet" type="text/css" href="mystyle.css"/>
     </h:head>
     <h:body>
         <h:form>
-            <p:tabMenu activeIndex="1">
+            <p:tabMenu activeIndex="2">
                 <p:menuitem value="Welcome" outcome="welcome.xhtml?faces-redirect=true"/>
                 <p:menuitem value="Search" outcome="search.xhtml?faces-redirect=true"/>
                 <p:menuitem value="New Releases" action="#{search.getNewMovieList()}"/>
@@ -23,10 +23,25 @@ and open the template in the editor.
                 <p:menuitem value="Profile" outcome="profile.xhtml?faces-redirect=true"/>
                 <p:menuitem value="Logout" action="#{user.logOut()}"/>
             </p:tabMenu>
-                    
-            <p:inputText id="search" value="#{search.searchTerm}" label="search term"/>
             
-            <p:commandButton value="Search" update="search" action="#{search.getSearchResults()}" icon="ui-icon-check" />
+            <p:dataTable var="newMovies" value="#{search.newMovies}">
+                <p:column headerText="Poster">
+                    <p:graphicImage value="#{newMovies.posters.thumbnail}" />
+                </p:column>                
+                
+                <p:column headerText="Id">
+                    <h:outputText value="#{newMovies.title}" />
+                </p:column>
+
+                <p:column headerText="Year">
+                    <h:outputText value="#{newMovies.year}" />
+                </p:column>
+
+                <p:column headerText="SynopsisS">
+                    <h:outputText value="#{newMovies.synopsis}" />
+                </p:column>
+
+            </p:dataTable>
         </h:form>
     </h:body>
 </html>

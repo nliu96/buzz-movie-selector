@@ -10,23 +10,38 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Search</title>
+        <title>New DVDs</title>
         <link rel="stylesheet" type="text/css" href="mystyle.css"/>
     </h:head>
     <h:body>
         <h:form>
-            <p:tabMenu activeIndex="1">
+            <p:tabMenu activeIndex="3">
                 <p:menuitem value="Welcome" outcome="welcome.xhtml?faces-redirect=true"/>
                 <p:menuitem value="Search" outcome="search.xhtml?faces-redirect=true"/>
                 <p:menuitem value="New Releases" action="#{search.getNewMovieList()}"/>
                 <p:menuitem value="New DVDs" action="#{search.getNewDvdList()}"/>
                 <p:menuitem value="Profile" outcome="profile.xhtml?faces-redirect=true"/>
-                <p:menuitem value="Logout" action="#{user.logOut()}"/>
+                <p:menuitem value="Logout" action="#{user.logOut()}" style="float:right"/>
             </p:tabMenu>
-                    
-            <p:inputText id="search" value="#{search.searchTerm}" label="search term"/>
             
-            <p:commandButton value="Search" update="search" action="#{search.getSearchResults()}" icon="ui-icon-check" />
+            <p:dataTable var="newDvds" value="#{search.newDvds}">
+                <p:column headerText="Poster">
+                    <p:graphicImage value="#{newDvds.posters.thumbnail}" />
+                </p:column>                
+                
+                <p:column headerText="Id">
+                    <h:outputText value="#{newDvds.title}" />
+                </p:column>
+
+                <p:column headerText="Year">
+                    <h:outputText value="#{newDvds.year}" />
+                </p:column>
+
+                <p:column headerText="Synopsis">
+                    <h:outputText value="#{newDvds.synopsis}" />
+                </p:column>
+
+            </p:dataTable>
         </h:form>
     </h:body>
 </html>
