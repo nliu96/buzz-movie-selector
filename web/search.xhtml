@@ -18,10 +18,15 @@ and open the template in the editor.
             <p:tabMenu activeIndex="1">
                 <p:menuitem value="Welcome" outcome="welcome.xhtml?faces-redirect=true"/>
                 <p:menuitem value="Search" outcome="search.xhtml?faces-redirect=true"/>
+                <p:menuitem value="New Releases" action="#{search.getNewMovieList()}"/>
+                <p:menuitem value="New DVDs" action="#{search.getNewDvdList()}"/>
                 <p:menuitem value="Profile" outcome="profile.xhtml?faces-redirect=true"/>
                 <p:menuitem value="Logout" action="#{user.logOut()}"/>
             </p:tabMenu>
+                    
+            <p:inputText id="search" value="#{search.searchTerm}" label="search term"/>
+            
+            <p:commandButton value="Search" update="search" action="#{search.getSearchResults()}" icon="ui-icon-check" />
         </h:form>
-        
     </h:body>
 </html>
