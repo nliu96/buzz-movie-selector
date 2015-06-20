@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>New DVDs</title>
+        <link rel="stylesheet" type="text/css" href="mystyle.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:tabMenu activeIndex="3">
+                <p:menuitem value="Welcome" outcome="welcome.xhtml?faces-redirect=true"/>
+                <p:menuitem value="Search" outcome="search.xhtml?faces-redirect=true"/>
+                <p:menuitem value="New Releases" action="#{search.getNewMovieList()}"/>
+                <p:menuitem value="New DVDs" action="#{search.getNewDvdList()}"/>
+                <p:menuitem value="Profile" outcome="profile.xhtml?faces-redirect=true"/>
+                <p:menuitem value="Logout" action="#{user.logOut()}" style="float:right"/>
+            </p:tabMenu>
+            
+            <p:dataTable var="newDvds" value="#{search.newDvds}">
+                <p:column headerText="Poster">
+                    <p:graphicImage value="#{newDvds.posters.thumbnail}" />
+                </p:column>                
+                
+                <p:column headerText="Id">
+                    <h:outputText value="#{newDvds.title}" />
+                </p:column>
+
+                <p:column headerText="Year">
+                    <h:outputText value="#{newDvds.year}" />
+                </p:column>
+
+                <p:column headerText="Synopsis">
+                    <h:outputText value="#{newDvds.synopsis}" />
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>
