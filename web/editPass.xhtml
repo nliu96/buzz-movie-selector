@@ -25,7 +25,7 @@ and open the template in the editor.
                 <p:password id="pwd2" value="#{user.newPassword}" label="Password 2" required="true" />
             </h:panelGrid>
             
-            <p:commandButton value="Submit" action="#{user.editPassword()}" icon="ui-icon-check" />
+            <p:commandButton value="Submit" update="matchGrid" action="#{user.editPassword()}" icon="ui-icon-check" />
             <p:button value="Cancel" outcome="profile.xhtml" icon="ui-icon-close" />
         </h:form>
     </h:body>

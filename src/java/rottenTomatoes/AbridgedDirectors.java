@@ -3,10 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package rottenTomatoes;
+
 /**
  *
  * @author theaz_000
  */
-public class Link {
-    
+public class AbridgedDirectors {
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

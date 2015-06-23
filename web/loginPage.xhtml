@@ -12,7 +12,7 @@
         <h:form>       
             <p:panel id="panel" header="Login to Buzz-Movie Selector">
                 <p:messages id="msgs"/>
-                <h:panelGrid columns="3" cellpadding="5">
+                <h:panelGrid columns="3" cellpadding="5" id="login">
                     <p:outputLabel for="username" value="User Name:" />
                     <p:inputText id="username" value="#{user.username}" 
                                  required="true" label="Username">
@@ -30,7 +30,7 @@
                     <p:message for="password" display="Text" />
                 </h:panelGrid>
                
-                <p:commandButton update="panel" value="Submit" action="#{user.login()}"/>
+                <p:commandButton update="login" value="Submit" action="#{user.login()}"/>
                 <p:button outcome="index.xhtml" value="Cancel"/>
                 
             </p:panel>  
