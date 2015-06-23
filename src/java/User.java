@@ -4,12 +4,15 @@
  * and open the template in the editor.
  */
 
+import rottenTomatoes.*;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -27,6 +30,8 @@ public class User implements Serializable {
     private String interests;
     private String newUsername;
     private String newPassword;
+    private List<Movie> searchResults = new ArrayList<Movie>();
+    private String searchTerm;
     
     @ManagedProperty("#{userManager}")
     private UserManager userManager;
@@ -70,6 +75,10 @@ public class User implements Serializable {
         return interests;
     }
     
+    public String getSearchTerm() {
+        return searchTerm;
+    }
+    
     public void setUsername(String u) {
         System.out.println("Setting username to " + u);
         username = u;
@@ -105,6 +114,14 @@ public class User implements Serializable {
     public void setMajor(String m) {
         major = m;
     }
+    
+    public void setSearchTerm(String st) {
+        searchTerm = st;
+    }
+    
+    public void setSearchResults(List<Movie> searchResults) {
+        this.searchResults = searchResults;
+    }
         
     public void setData(String username) {
         this.data = userManager.find(username);
@@ -117,26 +134,28 @@ public class User implements Serializable {
     public String editPassword() {
         setPassword(newPassword);
         data.setPassword(newPassword);
-        return "profile.xhtml";
+        return "profile.xhtml?faces-redirect=true";
     }
     
     public String editUsername() {
         userManager.addUser(username, newUsername);
         setUsername(newUsername);
         data.setUsername(newUsername);
-        return "profile.xhtml";
+        return "profile.xhtml?faces-redirect=true";
     }
     
     public String editProfile() {
         UserData ud = userManager.find(username);
+        ud.setEmail(email);
+        ud.setName(name);
         ud.setMajor(major);
         ud.setInterests(interests);
-        return "profile.xhtml";
+        return "profile.xhtml?faces-redirect=true";
     }
     
     public String cancelChanges() {
         setData(username);
-        return "profile.xhtml";
+        return "profile.xhtml?faces-redirect=true";
     }
     
     public String login() {
@@ -156,8 +175,7 @@ public class User implements Serializable {
     }
 
     public String logOut() {
-        setData(null);
-        return "index.html?faces-redirect=true";
+        return "index.xhtml?faces-redirect=true";
     }
     
     public void setUserManager(UserManager um) {
@@ -166,6 +184,6 @@ public class User implements Serializable {
     
     public String register() {
         userManager.addUser(email, name, username, password);
-        return "welcome.xhtml";
+        return "index.xhtml?faces-redirect=true";
     }
 }

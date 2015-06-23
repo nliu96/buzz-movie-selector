@@ -2,29 +2,32 @@ package rottenTomatoes;
 
 import com.google.gson.annotations.Expose;
 import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.Generated;
 
+@Generated("org.jsonschema2pojo")
 /**
  *
  * @author theaz_000
  */
 public class Movie {
     @Expose
-    private int id;
+    private String id;
     
     @Expose
     private String title;
     
     @Expose
-    private int year;
+    private String year;
     
     @Expose
-    private ArrayList<String> genres;
+    private List<String>genres = new ArrayList<String>();
     
     @Expose
     private String mpaa_rating;
     
     @Expose
-    private int runtime;
+    private String runtime;
     
     @Expose
     private String critics_concensus;
@@ -42,10 +45,10 @@ public class Movie {
     private Posters posters;
     
     @Expose
-    private ArrayList<AbridgedCast> abridged_cast;
+    private List<AbridgedCast> abridged_cast = new ArrayList<AbridgedCast>();
     
     @Expose
-    private ArrayList<AbridgedDirectors> abridged_directors;
+    private List<AbridgedDirectors> abridged_directors = new ArrayList<AbridgedDirectors>();
     
     @Expose
     private String studio;
@@ -56,7 +59,7 @@ public class Movie {
     @Expose
     private MovieLinks links;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -64,11 +67,11 @@ public class Movie {
         return title;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public ArrayList<String> getGenres() {
+    public List<String> getGenres() {
         return genres;
     }
 
@@ -76,7 +79,7 @@ public class Movie {
         return mpaa_rating;
     }
 
-    public int getRuntime() {
+    public String getRuntime() {
         return runtime;
     }
 
@@ -100,11 +103,11 @@ public class Movie {
         return posters;
     }
 
-    public ArrayList<AbridgedCast> getAbridged_cast() {
+    public List<AbridgedCast> getAbridged_cast() {
         return abridged_cast;
     }
 
-    public ArrayList<AbridgedDirectors> getAbridged_directors() {
+    public List<AbridgedDirectors> getAbridged_directors() {
         return abridged_directors;
     }
 
@@ -120,7 +123,7 @@ public class Movie {
         return links;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -128,7 +131,7 @@ public class Movie {
         this.title = title;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
@@ -140,7 +143,7 @@ public class Movie {
         this.mpaa_rating = mpaa_rating;
     }
 
-    public void setRuntime(int runtime) {
+    public void setRuntime(String runtime) {
         this.runtime = runtime;
     }
 

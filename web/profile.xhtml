@@ -15,11 +15,13 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form>
-            <p:tabMenu activeIndex="0">
+            <p:tabMenu activeIndex="4">
                 <p:menuitem value="Welcome" outcome="welcome.xhtml?faces-redirect=true"/>
                 <p:menuitem value="Search" outcome="search.xhtml?faces-redirect=true"/>
+                <p:menuitem value="New Releases" action="#{search.getNewMovieList()}"/>
+                <p:menuitem value="New DVDs" action="#{search.getNewDvdList()}"/>
                 <p:menuitem value="Profile" outcome="profile.xhtml?faces-redirect=true"/>
-                <p:menuitem value="Logout" ajax="false" action="#{user.logOut()}"/>
+                <p:menuitem value="Logout" action="#{user.logOut()}" style="float:right"/>
             </p:tabMenu>
         </h:form>
         

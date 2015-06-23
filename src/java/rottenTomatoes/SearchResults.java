@@ -12,7 +12,7 @@ import javax.annotation.Generated;
  */
 public class SearchResults {
     @Expose
-    private int total;
+    private String total;
     
     @Expose
     private List<Movie> movies = new ArrayList<Movie>();
@@ -23,7 +23,7 @@ public class SearchResults {
     @Expose
     private String link_Template;
 
-    public int getTotal() {
+    public String getTotal() {
         return total;
     }
 
@@ -39,7 +39,7 @@ public class SearchResults {
         return link_Template;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(String total) {
         this.total = total;
     }
 

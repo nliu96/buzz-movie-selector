@@ -21,7 +21,7 @@ class UserData {
         name = n;
         username = usnm;
         password = ps;
-        major = "Select One";
+        major = "None";
         interests = "None";
     }
     

@@ -15,18 +15,20 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form>
-            <p:tabMenu activeIndex="0">
+            <p:tabMenu activeIndex="4">
                 <p:menuitem value="Welcome" outcome="welcome.xhtml?faces-redirect=true"/>
                 <p:menuitem value="Search" outcome="search.xhtml?faces-redirect=true"/>
+                <p:menuitem value="New Releases" action="#{search.getNewMovieList()}"/>
+                <p:menuitem value="New DVDs" action="#{search.getNewDvdList()}"/>
                 <p:menuitem value="Profile" outcome="profile.xhtml?faces-redirect=true"/>
-                <p:menuitem value="Logout" ajax="false" action="#{user.logOut()}"/>
+                <p:menuitem value="Logout" action="#{user.logOut()}" style="float:right"/>
             </p:tabMenu>
         </h:form>
         
         <h:form>
             <p:messages id="messages" showDetail="true" autoUpdate="true" />
             
-            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5" id="info">
                 <p:outputLabel for="console" value="Major:" />
                 <p:selectOneMenu id="console" value="#{user.major}" style="width:125px">
                     <f:selectItem itemLabel="Select One" itemValue="" />
@@ -43,11 +45,12 @@ and open the template in the editor.
             </h:panelGrid>
 
             <h3>Remaining Chars</h3>
-                <p:inputTextarea rows="5" cols="30" counter="display" maxlength="200" value="#{user.interests}" 
-                                 counterTemplate="{0} characters remaining." autoResize="false" />
+                <p:inputTextarea rows="5" cols="30" counter="display" maxlength="200" 
+                                 value="#{user.interests}" counterTemplate="{0} characters remaining." 
+                                 id = "user" autoResize="false" />
             <h:outputText id="display" />
 
-            <p:commandButton value="Submit" action="#{user.editProfile()}" icon="ui-icon-check" />
+            <p:commandButton value="Submit" update = "info" action="#{user.editProfile()}" icon="ui-icon-check" />
             <p:commandButton value="Cancel" action="#{user.cancelChanges()}" icon="ui-icon-close" />
         </h:form>
     </h:body>
