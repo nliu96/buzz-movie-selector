@@ -33,8 +33,9 @@ import javax.xml.registry.infomodel.User;
 @ApplicationScoped
 public class Search {
     private String searchTerm;
-    private String inputTerm;
     private List<Movie> movies = new ArrayList<Movie>();
+    private List<Movie> newMovies = new ArrayList<Movie>();
+    private List<Movie> newDvds = new ArrayList<Movie>();
     
     public String getSearchTerm() {
         return searchTerm;
@@ -44,8 +45,12 @@ public class Search {
         return movies;
     }
     
-    public String getInputTerm() {
-        return inputTerm;
+    public List getNewMovies() {
+        return newMovies;
+    }
+    
+    public List getNewDvds() {
+        return newDvds;
     }
     
     public void setSearchTerm(String searchTerm) {
@@ -55,11 +60,15 @@ public class Search {
     public void setMovies(List<Movie> movies) {
         this.movies = movies;
     }
-    
-    public void setIntputTerm(String inputTerm) {
-        this.inputTerm = inputTerm;
+
+    public void setNewMovies(List<Movie> newMovies) {
+        this.newMovies = newMovies;
     }
-    
+
+    public void setNewDvds(List<Movie> newDvds) {
+        this.newDvds = newDvds;
+    }
+
     protected String getData(String link) {
         URL url = null;
         String data = "";
@@ -99,14 +108,36 @@ public class Search {
     public String getSearchResults() {
         System.out.println("Getting the REST data");
         Gson gson = new Gson();
-//        String link = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=yedukp76ffytfuy24zsqk7f5&q="
-//                + (searchTerm.replaceAll(" ", "+")) + "&page_limit=5";
-        String link = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?q="
-                + searchTerm + "&page_limit=10&page=1&apikey=yedukp76ffytfuy24zsqk7f5";
+        String link = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=yedukp76ffytfuy24zsqk7f5&q="
+                + (searchTerm.replaceAll(" ", "+")) + "&page_limit=5";
         String data = getData(link);
         SearchResults response = gson.fromJson(data, SearchResults.class);
         movies = response.getMovies();
         System.out.println("Returning the temp data");
         return "searchResults.xhtml?faces-redirect=true";
+    }
+    
+    public String getNewDvdList() {
+        System.out.println("Getting the REST data");
+        Gson gson = new Gson();
+        String link = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json"
+                + "?page_limit=16&page=1&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
+        String data = getData(link);
+        SearchResults response = gson.fromJson(data, SearchResults.class);
+        newDvds = response.getMovies();
+        System.out.println("Returning the temp data");
+        return "newDvds.xhtml?faces-redirect=true";
+    }
+    
+    public String getNewMovieList() {
+        System.out.println("Getting the REST data");
+        Gson gson = new Gson();
+        String link = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/opening.json"
+                + "?limit=16&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
+        String data = getData(link);
+        SearchResults response = gson.fromJson(data, SearchResults.class);
+        newMovies = response.getMovies();
+        System.out.println("Returning the temp data");
+        return "newMovies.xhtml?faces-redirect=true";
     }
 }
