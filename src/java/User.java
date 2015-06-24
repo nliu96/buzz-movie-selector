@@ -35,6 +35,10 @@ public class User implements Serializable {
     
     @ManagedProperty("#{userManager}")
     private UserManager userManager;
+    @ManagedProperty("#{movieManager}")
+    private MovieManager movieManager;
+    @ManagedProperty("#{search}")
+    private Search search;
     
     /**
      * Creates a new instance of User
@@ -79,6 +83,14 @@ public class User implements Serializable {
         return searchTerm;
     }
     
+    public MovieManager getMovieManager() {
+        return movieManager;
+    }
+    
+    public Search getSearch() {
+        return search;
+    }
+    
     public void setUsername(String u) {
         System.out.println("Setting username to " + u);
         username = u;
@@ -114,6 +126,7 @@ public class User implements Serializable {
     public void setMajor(String m) {
         major = m;
     }
+   
     
     public void setSearchTerm(String st) {
         searchTerm = st;
@@ -175,11 +188,32 @@ public class User implements Serializable {
     }
 
     public String logOut() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "index.xhtml?faces-redirect=true";
+    }
+    
+    public String getSearchResults() {
+        return search.getSearchResults();
+    }
+    
+    public String getNewMovieList() {
+        return search.getNewMovieList();
+    }
+    
+    public String getNewDvdList() {
+        return search.getNewDvdList();
     }
     
     public void setUserManager(UserManager um) {
         userManager = um;
+    }
+    
+    public void setMovieManager(MovieManager mm) {
+        movieManager = mm;
+    }
+    
+    public void setSearch(Search search) {
+        this.search = search;
     }
     
     public String register() {
