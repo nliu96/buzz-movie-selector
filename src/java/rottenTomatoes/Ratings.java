@@ -5,11 +5,13 @@
  */
 package rottenTomatoes;
 
+import java.io.Serializable;
+
 /**
  *
  * @author theaz_000
  */
-public class Ratings {
+public class Ratings implements Serializable {
     private String critics_rating;
     private String critics_scores;
     private String audience_rating;

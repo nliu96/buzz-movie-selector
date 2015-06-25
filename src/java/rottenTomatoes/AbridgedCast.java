@@ -1,6 +1,7 @@
 package rottenTomatoes;
 
 import com.google.gson.annotations.Expose;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
@@ -15,7 +16,7 @@ import javax.annotation.Generated;
  *
  * @author theaz_000
  */
-public class AbridgedCast {
+public class AbridgedCast implements Serializable {
     
     @Expose
     private String name;

@@ -5,11 +5,13 @@
  */
 package rottenTomatoes;
 
+import java.io.Serializable;
+
 /**
  *
  * @author theaz_000
  */
-public class AbridgedDirectors {
+public class AbridgedDirectors implements Serializable {
     private String name;
 
     public String getName() {

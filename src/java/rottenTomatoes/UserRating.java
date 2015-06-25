@@ -1,5 +1,7 @@
 package rottenTomatoes;
 
+import java.io.Serializable;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,7 +11,7 @@ package rottenTomatoes;
  *
  * @author theaz_000
  */
-public class UserRating {
+public class UserRating implements Serializable {
     private int rating;
     private UserData user;
     private String major;
