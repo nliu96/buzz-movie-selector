@@ -35,6 +35,7 @@ public class User implements Serializable {
     private String newPassword;
     
     private List<Movie> searchResults = new ArrayList<Movie>();
+    private List<Movie> recommendations = new ArrayList<Movie>();
     
     private String searchTerm;
     private Movie currentMovie;
@@ -46,6 +47,14 @@ public class User implements Serializable {
     private MovieManager movieManager;
     @ManagedProperty("#{search}")
     private Search search;
+
+    public void setRecommendations(List<Movie> recommendations) {
+        this.recommendations = recommendations;
+    }
+
+    public List<Movie> getRecommendations() {
+        return recommendations;
+    }
 
     public void setUserRating(int userRating) {
         this.userRating = userRating;
@@ -293,6 +302,11 @@ public class User implements Serializable {
         currentMovie.addRating(username, new UserRating(userRating, data));
         UserRating lol = (UserRating) currentMovie.getUserRatings().get(username);
         System.out.println(lol.getRating());
+    }
+    
+    public String reccomend() {
+        movie
+        return "recommendations";
     }
     
     public String getNewMovieList() {
