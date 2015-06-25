@@ -24,9 +24,9 @@ and open the template in the editor.
                 <p:menuitem value="Logout" action="#{user.logOut()}"/>
             </p:tabMenu>
                     
-            <p:inputText id="search" value="#{search.searchTerm}" label="search term"/>
+            <p:inputText id="search" value="#{user.searchTerm}" label="search term"/>
             
-            <p:commandButton value="Search" update="search" action="#{search.getSearchResults()}" icon="ui-icon-check" />
+            <p:commandButton value="Search" update="search" action="#{user.searchMovies()}" icon="ui-icon-check" />
         </h:form>
     </h:body>
 </html>

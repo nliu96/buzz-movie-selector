@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Movie Info</title>
+        <link rel="stylesheet" type="text/css" href="mystyle.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:tabMenu>
+                <p:menuitem value="Welcome" outcome="welcome.xhtml?faces-redirect=true"/>
+                <p:menuitem value="Search" outcome="search.xhtml?faces-redirect=true"/>
+                <p:menuitem value="New Releases" action="#{search.getNewMovieList()}"/>
+                <p:menuitem value="New DVDs" action="#{search.getNewDvdList()}"/>
+                <p:menuitem value="Profile" outcome="profile.xhtml?faces-redirect=true"/>
+                <p:menuitem value="Logout" action="#{user.logOut()}"/>
+            </p:tabMenu>
+
+            <p:fieldset legend="#{user.currentMovie.title}" style="margin-bottom:20px">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:graphicImage value ="#{user.currentMovie.posters.original}" />
+                    <h:outputText value="#{user.currentMovie.synopsis}" />
+                </h:panelGrid>
+            </p:fieldset>
+            <p:panel>
+                <h:panelGrid columns="2" cellpadding="5" id="panel">
+                    <h:outputText value="Basic:" />
+                    <p:rating value="#{user.userRating}"/>
+                </h:panelGrid>
+                <p:commandButton update="panel" value="Submit" action="#{user.addRating()}"/>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>

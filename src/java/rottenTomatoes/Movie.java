@@ -2,7 +2,9 @@ package rottenTomatoes;
 
 import com.google.gson.annotations.Expose;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
@@ -58,6 +60,8 @@ public class Movie {
     
     @Expose
     private MovieLinks links;
+    
+    private Map<String, UserRating> userRatings = new HashMap<>();
 
     public String getId() {
         return id;
@@ -123,6 +127,10 @@ public class Movie {
         return links;
     }
 
+    public Map getUserRatings() {
+        return userRatings;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -186,5 +194,24 @@ public class Movie {
     public void setLinks(MovieLinks links) {
         this.links = links;
     }
+
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
+    }
+
+    public void setAbridged_cast(List<AbridgedCast> abridged_cast) {
+        this.abridged_cast = abridged_cast;
+    }
+
+    public void setAbridged_directors(List<AbridgedDirectors> abridged_directors) {
+        this.abridged_directors = abridged_directors;
+    }
+
+    public void setUserRatings(Map userRatings) {
+        this.userRatings = userRatings;
+    }    
     
+    public void addRating(String username, UserRating rating) {
+        userRatings.put(username, rating);
+    }
 }
