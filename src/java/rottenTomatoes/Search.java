@@ -32,43 +32,64 @@ import javax.xml.registry.infomodel.User;
 @ManagedBean
 @ApplicationScoped
 public class Search {
-    private String searchTerm;
     private List<Movie> movies = new ArrayList<Movie>();
     private List<Movie> newMovies = new ArrayList<Movie>();
     private List<Movie> newDvds = new ArrayList<Movie>();
-    
-    public String getSearchTerm() {
-        return searchTerm;
-    }
-    
+
+    /**
+     * Get movie list
+     * @return movie list
+     */
     public List getMovies() {
         return movies;
     }
     
+    
+    /**
+     * get new movie list
+     * @return new movie list
+     */
     public List getNewMovies() {
         return newMovies;
     }
     
+    /**
+     * Get new dvd list
+     * @return 
+     */
     public List getNewDvds() {
         return newDvds;
     }
     
-    public void setSearchTerm(String searchTerm) {
-        this.searchTerm = searchTerm;
-    }
-    
+    /**
+     * Set movie list
+     * @param movies 
+     */
     public void setMovies(List<Movie> movies) {
         this.movies = movies;
     }
 
+    /**
+     * Set new movie list
+     * @param newMovies 
+     */
     public void setNewMovies(List<Movie> newMovies) {
         this.newMovies = newMovies;
     }
 
+    /**
+     * Set new dvd list
+     * @param newDvds 
+     */
     public void setNewDvds(List<Movie> newDvds) {
         this.newDvds = newDvds;
     }
 
+    /**
+     * Get data from URL
+     * @param link
+     * @return 
+     */
     protected String getData(String link) {
         URL url = null;
         String data = "";
@@ -104,19 +125,27 @@ public class Search {
         return data;
         }
 
-    
-    public String getSearchResults() {
+    /**
+     * Get search results from rotten tomatoes using search term and API
+     * @param searchTerm
+     * @return Search Results
+     */
+    public List<Movie> getSearchResults(String searchTerm) {
         System.out.println("Getting the REST data");
         Gson gson = new Gson();
         String link = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=yedukp76ffytfuy24zsqk7f5&q="
-                + (searchTerm.replaceAll(" ", "+")) + "&page_limit=5";
+                + (searchTerm.replaceAll(" ", "+")) + "&page_limit=10";
         String data = getData(link);
         SearchResults response = gson.fromJson(data, SearchResults.class);
         movies = response.getMovies();
         System.out.println("Returning the temp data");
-        return "searchResults.xhtml?faces-redirect=true";
+        return movies;
     }
     
+    /**
+     * Get new dvd list from rotten tomatoes using API
+     * @return 
+     */
     public String getNewDvdList() {
         System.out.println("Getting the REST data");
         Gson gson = new Gson();
@@ -129,6 +158,10 @@ public class Search {
         return "newDvds.xhtml?faces-redirect=true";
     }
     
+    /**
+     * Get new movie list from rotten tomatoes using API
+     * @return 
+     */
     public String getNewMovieList() {
         System.out.println("Getting the REST data");
         Gson gson = new Gson();

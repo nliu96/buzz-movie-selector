@@ -23,25 +23,26 @@ and open the template in the editor.
                 <p:menuitem value="Profile" outcome="profile.xhtml?faces-redirect=true"/>
                 <p:menuitem value="Logout" action="#{user.logOut()}" style="float:right"/>
             </p:tabMenu>
-            
-            <p:dataTable var="movies" value="#{search.movies}">
+        
+            <p:panel><p:dataTable id="table" var="movie" value="#{user.searchResults}">
                 <p:column headerText="Poster">
-                    <p:graphicImage value="#{movies.posters.thumbnail}" />
-                </p:column>                
-                
-                <p:column headerText="Id">
-                    <h:outputText value="#{movies.title}" />
+                    <p:graphicImage value="#{movie.posters.thumbnail}" />
+                </p:column>
+
+                <p:column headerText="Title">
+                    <p:commandLink action="#{user.viewDetails(movie.id, movie)}" immediate="true" value="#{movie.title}"/>
                 </p:column>
 
                 <p:column headerText="Year">
-                    <h:outputText value="#{movies.year}" />
+                    <h:outputText value="#{movie.year}" />
                 </p:column>
 
-                <p:column headerText="Brand">
-                    <h:outputText value="#{movies.synopsis}" />
+                <p:column headerText="Synopsis">
+                    <h:outputText value="#{movie.synopsis}" />
                 </p:column>
 
             </p:dataTable>
+            </p:panel>
         </h:form>
     </h:body>
 </html>
