@@ -10,12 +10,12 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Welcome</title>
+        <title>Search Results</title>
         <link rel="stylesheet" type="text/css" href="mystyle.css"/>
     </h:head>
     <h:body>
         <h:form>
-            <p:tabMenu activeIndex="0">
+            <p:tabMenu activeIndex="4">
                 <p:menuitem value="Welcome" outcome="welcome.xhtml?faces-redirect=true"/>
                 <p:menuitem value="Search" outcome="search.xhtml?faces-redirect=true"/>
                 <p:menuitem value="New Releases" action="#{search.getNewMovieList()}"/>
@@ -24,6 +24,26 @@ and open the template in the editor.
                 <p:menuitem value="Profile" outcome="profile.xhtml?faces-redirect=true"/>
                 <p:menuitem value="Logout" action="#{user.logOut()}" style="float:right"/>
             </p:tabMenu>
+        
+            <p:panel><p:dataTable id="table" var="movie" value="#{user.recommendations}">
+                <p:column headerText="Poster">
+                    <p:graphicImage value="#{movie.posters.thumbnail}" />
+                </p:column>
+
+                <p:column headerText="Title">
+                    <p:commandLink action="#{user.viewDetails(movie.id, movie)}" immediate="true" value="#{movie.title}"/>
+                </p:column>
+
+                <p:column headerText="Year">
+                    <h:outputText value="#{movie.year}" />
+                </p:column>
+
+                <p:column headerText="Synopsis">
+                    <h:outputText value="#{movie.synopsis}" />
+                </p:column>
+
+            </p:dataTable>
+            </p:panel>
         </h:form>
     </h:body>
 </html>

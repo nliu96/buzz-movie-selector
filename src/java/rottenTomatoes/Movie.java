@@ -1,6 +1,7 @@
 package rottenTomatoes;
 
 import com.google.gson.annotations.Expose;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +13,7 @@ import javax.annotation.Generated;
  *
  * @author theaz_000
  */
-public class Movie {
+public class Movie implements Serializable {
     @Expose
     private String id;
     
@@ -213,5 +214,21 @@ public class Movie {
     
     public void addRating(String username, UserRating rating) {
         userRatings.put(username, rating);
+    }
+    
+    public int ratingByMajor(String major) {
+        int rateMajor = 0;
+        int count = 0;
+        for(UserRating rates : userRatings.values()) {
+            if(rates.getMajor().equals(major)) {
+                rateMajor += rates.getRating();
+                count++;
+            }
+        }
+        if(count == 0) {
+            return 3;
+        }
+        rateMajor = rateMajor/count;
+        return rateMajor;
     }
 }

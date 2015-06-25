@@ -5,11 +5,13 @@
  */
 package rottenTomatoes;
 
+import java.io.Serializable;
+
 /**
  *
  * @author theaz_000
  */
-public class Posters {
+public class Posters implements Serializable {
     private String thumbnail;
     private String profile;
     private String detailed;

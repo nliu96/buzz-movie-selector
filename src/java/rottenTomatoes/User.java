@@ -6,7 +6,6 @@ package rottenTomatoes;
  * and open the template in the editor.
  */
 
-import rottenTomatoes.*;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -88,6 +87,7 @@ public class User implements Serializable {
      * Creates a new instance of User
      */
     public User() {
+        userManager = userManager.getFromFile("data.txt");
         System.out.println("Making user");
     }
     
@@ -268,6 +268,8 @@ public class User implements Serializable {
     }   
 
     public String logOut() {
+        userManager.save("data.txt");
+        
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "index.xhtml?faces-redirect=true";
     }
@@ -291,7 +293,6 @@ public class User implements Serializable {
             userRating  = movieRating.getRating();
             System.out.println("success");
         } else {
-            Integer k = null;
             userRating = 3;
         }
         return "movieInfo";
@@ -304,9 +305,9 @@ public class User implements Serializable {
         System.out.println(lol.getRating());
     }
     
-    public String reccomend() {
-        movie
-        return "recommendations";
+    public String recommend() {
+        recommendations = movieManager.getRecommendations(major);
+        return "recommendations.xhtml?faces-redirect=true   ";
     }
     
     public String getNewMovieList() {

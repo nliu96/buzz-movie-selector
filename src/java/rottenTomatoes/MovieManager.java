@@ -1,7 +1,9 @@
 package rottenTomatoes;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ApplicationScoped;
@@ -45,5 +47,15 @@ public class MovieManager implements Serializable {
     
     public Movie find(String title) {
         return movies.get(title);
+    }
+    
+    public List<Movie> getRecommendations(String major) {
+        List<Movie> recommendations = new ArrayList<Movie>();
+        for(Movie movie: movies.values()) {
+            if(movie.ratingByMajor(major) > 3) {
+                recommendations.add(movie);
+            }
+        }
+        return recommendations;
     }
 }

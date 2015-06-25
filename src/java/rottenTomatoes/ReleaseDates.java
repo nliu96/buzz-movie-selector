@@ -6,6 +6,7 @@
 package rottenTomatoes;
 
 import com.google.gson.annotations.Expose;
+import java.io.Serializable;
 import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
@@ -13,7 +14,7 @@ import javax.annotation.Generated;
  *
  * @author theaz_000
  */
-public class ReleaseDates {
+public class ReleaseDates implements Serializable {
     @Expose
     private String theater;
     
