@@ -87,7 +87,8 @@ public class User implements Serializable {
      * Creates a new instance of User
      */
     public User() {
-        userManager = userManager.getFromFile("data.txt");
+        userManager = userManager.getFromFile("userData.txt");
+        movieManager = movieManager.getFromFile("movieData.txt");
         System.out.println("Making user");
     }
     
@@ -268,8 +269,8 @@ public class User implements Serializable {
     }   
 
     public String logOut() {
-        userManager.save("data.txt");
-        
+        userManager.save("userData.txt");
+        movieManager.save("movieData.txt");
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "index.xhtml?faces-redirect=true";
     }
