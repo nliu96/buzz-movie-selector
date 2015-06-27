@@ -31,7 +31,7 @@ and open the template in the editor.
                 </p:column>                
                 
                 <p:column headerText="Id">
-                    <h:outputText value="#{newDvds.title}" />
+                     <p:commandLink action="#{user.viewDetails(newDvds.id, newDvds)}" immediate="true" value="#{newDvds.title}"/>
                 </p:column>
 
                 <p:column headerText="Year">

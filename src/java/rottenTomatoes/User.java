@@ -87,7 +87,8 @@ public class User implements Serializable {
      * Creates a new instance of User
      */
     public User() {
-        userManager = userManager.getFromFile("data.txt");
+        userManager = userManager.getFromFile("userData.txt");
+        movieManager = movieManager.getFromFile("movieData.txt");
         System.out.println("Making user");
     }
     
@@ -262,14 +263,20 @@ public class User implements Serializable {
             context.addMessage(null, new FacesMessage("Username or Password incorrect"));
             return null;
         }
+        if (!data.getStatus()) {
+            System.out.println("Account is locked");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Account is locked"));
+            return null;
+        }
         System.out.println("Login Success");
         setData(username);
         return "welcome.xhtml?faces-redirect=true";
     }   
 
     public String logOut() {
-        userManager.save("data.txt");
-        
+        userManager.save("userData.txt");
+        movieManager.save("movieData.txt");
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "index.xhtml?faces-redirect=true";
     }

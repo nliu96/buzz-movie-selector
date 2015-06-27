@@ -11,13 +11,14 @@ import java.io.Serializable;
  *
  * @author Nick Liu
  */
-class UserData implements Serializable{
+public class UserData implements Serializable{
     private String name;
     private String username;
     private String password;
     private String email;
     private String major;
     private String interests;
+    private boolean status;
     
     public UserData(String em, String n, String usnm, String ps) {
         email = em;
@@ -26,6 +27,7 @@ class UserData implements Serializable{
         password = ps;
         major = "None";
         interests = "None";
+        status = true;
     }
     
     public void setName(String n) {
@@ -71,8 +73,25 @@ class UserData implements Serializable{
     public String getPassword() {
         return password;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
     
-    boolean checkLogin(String p) {
+    public boolean checkLogin(String p) {
         return p.equals(password);
+    }
+    
+    public String toggleLock() {
+        status = !status;
+        return "admin?faces-redirect=true";
     }
 }
