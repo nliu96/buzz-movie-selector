@@ -15,7 +15,11 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form>
-            <p:panel><p:dataTable id="table" var="user" value="#{admin.users}">
+            <p:panel><p:dataTable id="table" var="users" value="#{admin.users}">
+                <p:column headerText="Status">
+                    <p:commandLink action="#{users.toggleLock()}" value="#{users.status}" />
+                </p:column>
+                
                 <p:column headerText="Name">
                     <h:outputText value="#{users.name}" />
                 </p:column>
@@ -38,6 +42,7 @@ and open the template in the editor.
 
             </p:dataTable>
             </p:panel>
+            <p:commandButton action="#{admin.logout()}" value="logout"/>
         </h:form>
     </h:body>
 </html>

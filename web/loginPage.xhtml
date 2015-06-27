@@ -23,7 +23,9 @@
                     
                     <p:outputLabel for="password" value="Password:" />
                     <p:password id="password" value="#{user.password}" 
-                                label="Password" required="true" feedback="true">
+                                label="Password" required="true" feedback="true"
+                                validatorMessage="Information is wrong or account
+                                is locked">
                         <f:validateLength minimum="2" />
                     </p:password>
                     

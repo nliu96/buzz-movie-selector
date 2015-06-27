@@ -31,7 +31,6 @@ public class Admin implements Serializable {
     public Admin() {
         userManager = userManager.getFromFile("userData.txt");
         movieManager = movieManager.getFromFile("movieData.txt");
-        loadUserList();
     }
     
     public void loadUserList() {
@@ -40,6 +39,8 @@ public class Admin implements Serializable {
     }
     
     public String login() {
+        loadUserList();
+        System.out.println("Admin login");
         return "admin.xhtml?faces-redirect=true";
     }
     

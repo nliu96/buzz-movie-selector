@@ -263,6 +263,12 @@ public class User implements Serializable {
             context.addMessage(null, new FacesMessage("Username or Password incorrect"));
             return null;
         }
+        if (!data.getStatus()) {
+            System.out.println("Account is locked");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Account is locked"));
+            return null;
+        }
         System.out.println("Login Success");
         setData(username);
         return "welcome.xhtml?faces-redirect=true";
