@@ -113,5 +113,12 @@ public class UserManager implements Serializable{
        System.out.println("Looking up user: " + username);
        return users.get(username);
     }
-  
+
+    public Map getUsers() {
+        return users;
+    }
+    
+    public void setUsers(Map users) {
+        this.users = users;
+    }
 }
