@@ -47,26 +47,50 @@ public class User implements Serializable {
     @ManagedProperty("#{search}")
     private Search search;
 
+    /**
+     * 
+     * @param recommendations Recommendations for user
+     */
     public void setRecommendations(List<Movie> recommendations) {
         this.recommendations = recommendations;
     }
 
+    /**
+     * 
+     * @return Recommendations for user
+     */
     public List<Movie> getRecommendations() {
         return recommendations;
     }
 
+    /**
+     * 
+     * @param userRating Rating of movie
+     */
     public void setUserRating(int userRating) {
         this.userRating = userRating;
     }
 
+    /**
+     * 
+     * @return Rating of movie
+     */
     public int getUserRating() {
         return userRating;
     }
 
+    /**
+     * 
+     * @param data Data of user
+     */
     public void setData(UserData data) {
         this.data = data;
     }
 
+    /**
+     * 
+     * @param currentMovie Data of user
+     */
     public void setCurrentMovie(Movie currentMovie) {
         this.currentMovie = currentMovie;
     }
@@ -87,8 +111,12 @@ public class User implements Serializable {
      * Creates a new instance of User
      */
     public User() {
-        userManager = userManager.getFromFile("userData.txt");
-        movieManager = movieManager.getFromFile("movieData.txt");
+        if(!(userManager.getFromFile("userData.txt") == null)) {
+            userManager = userManager.getFromFile("userData.txt");
+        }
+        if(!(movieManager.getFromFile("movieData.txt") == null)) {
+            movieManager = movieManager.getFromFile("movieData.txt");
+        }
         System.out.println("Making user");
     }
     
