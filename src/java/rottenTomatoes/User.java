@@ -40,10 +40,6 @@ public class User implements Serializable {
     private Movie currentMovie;
     private int userRating;
     
-    @ManagedProperty("#{userManager}")
-    private UserManager userManager;
-    @ManagedProperty("#{movieManager}")
-    private MovieManager movieManager;
     @ManagedProperty("#{search}")
     private Search search;
 
@@ -78,17 +74,13 @@ public class User implements Serializable {
     public Movie getCurrentMovie() {
         return currentMovie;
     }
-
-    public UserManager getUserManager() {
-        return userManager;
-    }
     
     /**
      * Creates a new instance of User
      */
     public User() {
-        userManager = userManager.getFromFile("userData.txt");
-        movieManager = movieManager.getFromFile("movieData.txt");
+        UserManager.getInstance().loadBinary();
+        MovieManager.getInstance().loadBinary();
         System.out.println("Making user");
     }
     
@@ -164,10 +156,6 @@ public class User implements Serializable {
         return searchTerm;
     }
     
-    public MovieManager getMovieManager() {
-        return movieManager;
-    }
-    
     public Search getSearch() {
         return search;
     }
@@ -218,7 +206,7 @@ public class User implements Serializable {
     }
         
     public void setData(String username) {
-        this.data = userManager.find(username);
+        this.data = UserManager.getInstance().find(username);
         setMajor(data.getMajor());
         setName(data.getName());
         setEmail(data.getEmail());
@@ -232,14 +220,14 @@ public class User implements Serializable {
     }
     
     public String editUsername() {
-        userManager.addUser(username, newUsername);
+        UserManager.getInstance().addUser(username, newUsername);
         setUsername(newUsername);
         data.setUsername(newUsername);
         return "profile.xhtml?faces-redirect=true";
     }
     
     public String editProfile() {
-        UserData ud = userManager.find(username);
+        UserData ud = UserManager.getInstance().find(username);
         ud.setEmail(email);
         ud.setName(name);
         ud.setMajor(major);
@@ -254,7 +242,7 @@ public class User implements Serializable {
     
     public String login() {
         System.out.println("Doing some business logic here");
-        UserData data = userManager.find(username);
+        UserData data = UserManager.getInstance().find(username);
         if (data == null || !data.checkLogin(password)) {
             username="";
             password="";
@@ -275,8 +263,8 @@ public class User implements Serializable {
     }   
 
     public String logOut() {
-        userManager.save("userData.txt");
-        movieManager.save("movieData.txt");
+        UserManager.getInstance().saveBinary();
+        MovieManager.getInstance().saveBinary();
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "index.xhtml?faces-redirect=true";
     }
@@ -291,10 +279,10 @@ public class User implements Serializable {
     }
     
     public String viewDetails(String id, Movie movie) {
-        if(!movieManager.getMovies().containsKey(id)) {
-            movieManager.addMovie(movie.getId(), movie);
+        if(!MovieManager.getInstance().getMovies().containsKey(id)) {
+            MovieManager.getInstance().addMovie(movie.getId(), movie);
         }
-        currentMovie = movieManager.find(movie.getId());
+        currentMovie = MovieManager.getInstance().find(movie.getId());
         if(currentMovie.getUserRatings().containsKey(username)) {
             UserRating movieRating = (UserRating) currentMovie.getUserRatings().get(username);
             userRating  = movieRating.getRating();
@@ -313,7 +301,7 @@ public class User implements Serializable {
     }
     
     public String recommend() {
-        recommendations = movieManager.getRecommendations(major);
+        recommendations = MovieManager.getInstance().getRecommendations(major);
         return "recommendations.xhtml?faces-redirect=true   ";
     }
     
@@ -325,20 +313,12 @@ public class User implements Serializable {
         return search.getNewDvdList();
     }
     
-    public void setUserManager(UserManager um) {
-        userManager = um;
-    }
-    
-    public void setMovieManager(MovieManager mm) {
-        movieManager = mm;
-    }
-    
     public void setSearch(Search search) {
         this.search = search;
     }
     
     public String register() {
-        userManager.addUser(email, name, username, password);
+        UserManager.getInstance().addUser(email, name, username, password);
         return "index.xhtml?faces-redirect=true";
     }
 }

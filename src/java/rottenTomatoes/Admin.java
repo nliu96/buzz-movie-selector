@@ -23,18 +23,13 @@ import javax.faces.context.FacesContext;
 public class Admin implements Serializable {
     List<UserData> users = new ArrayList<UserData>();
     
-    @ManagedProperty("#{userManager}")
-    private UserManager userManager;
-    @ManagedProperty("#{movieManager}")
-    private MovieManager movieManager;
-    
     public Admin() {
-        userManager = userManager.getFromFile("userData.txt");
-        movieManager = movieManager.getFromFile("movieData.txt");
+        UserManager.getInstance().loadBinary();
+        MovieManager.getInstance().loadBinary();
     }
     
     public void loadUserList() {
-        List<UserData> users = new ArrayList<UserData>(userManager.getUsers().values());
+        List<UserData> users = new ArrayList<UserData>(UserManager.getInstance().getUsers().values());
         this.users = users;
     }
     
@@ -53,23 +48,7 @@ public class Admin implements Serializable {
         return users;
     }
 
-    public UserManager getUserManager() {
-        return userManager;
-    }
-
-    public MovieManager getMovieManager() {
-        return movieManager;
-    }
-
     public void setUsers(List<UserData> users) {
         this.users = users;
-    }
-
-    public void setUserManager(UserManager userManager) {
-        this.userManager = userManager;
-    }
-
-    public void setMovieManager(MovieManager movieManager) {
-        this.movieManager = movieManager;
     }
 }

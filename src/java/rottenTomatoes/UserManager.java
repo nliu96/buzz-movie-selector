@@ -27,6 +27,10 @@ import java.util.logging.Logger;
 @ManagedBean (name = "userManager")
 @ApplicationScoped
 public class UserManager implements Serializable{
+    private static UserManager instance = new UserManager();
+    
+    public static UserManager getInstance() { return instance; }
+    
     
     private Map<String, UserData> users = new HashMap<>();
     
@@ -59,55 +63,29 @@ public class UserManager implements Serializable{
         users.put(username, data);
     }
     
-     public void save(String filename) {
-         try {
-             /*
-              * Create the object output stream for serialization.
-              * We are wrapping a FileOutputStream since we
-              * want to save to disk.  You can also save to socket
-              * streams or any other kind of stream.
-              */
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename));
-            
-            /*
-             * The only real call we need.  The stream buffers the output and reuses
-             * data, so if you are serializing very frequently, then the object values might
-             * not actually change because the old serialized object is being reused.
-             * 
-             * To fix this you can try writeUnshared() or you can reset the stream.
-             * out.reset();
-             */
-            out.writeObject(this);
-        } catch (FileNotFoundException e) {
-            myLogger.log(Level.SEVERE, "Save file not found: " + filename, e);
-        } catch (IOException e) {
-            myLogger.log(Level.SEVERE, "General IO Error on saving: " + filename, e);
+    public void saveBinary() {
+        try {
+            ObjectOutputStream os = new ObjectOutputStream(
+                    new FileOutputStream("userData.txt"));
+            os.writeObject(users);
+            os.close();
+        } catch (IOException ex) {
+            Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
-     }
-     
-    public static UserManager getFromFile(String filename) {
-         UserManager um = null;
-         try {
-             /*
-              * Create the input stream.  Since we want to read from the disk, 
-              * we wrap a file stream.
-              */
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename));
-            /*
-             * Now we can read the entire company in with only one call
-             */
-            um = (UserManager) in.readObject();
-            
-        } catch (FileNotFoundException e) {
-            myLogger.log(Level.SEVERE, "Load file not found: " + filename, e);
-        } catch (IOException e) {
-            myLogger.log(Level.SEVERE, "General IO Error on loading: " + filename, e);
-        } catch (ClassNotFoundException e) {
-            myLogger.log(Level.SEVERE, "Company class not found on loading: " + filename, e);
+    }
+    
+    public void loadBinary() {
+        try {
+            ObjectInputStream is = new ObjectInputStream(
+                    new FileInputStream("userData.txt"));
+            users = (Map<String, UserData>) is.readObject();
+            is.close();
+        } catch (IOException ex) {
+            Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return um;
-     }
+    }
 
     public UserData find(String username) {
        System.out.println("Looking up user: " + username);
