@@ -64,11 +64,15 @@ public class UserTest {
         assertEquals(expResult, result);
     }
     
-    @Test
+    @Test(expected=NullPointerException.class)
     public void testLockedAccount() {
         System.out.println("locked account");
         String expResult = null;
         instance.setUsername("user");
         instance.setPassword("pass");
+        UserManager.getInstance().find("user").toggleLock();
+        String result = instance.login();
+        assertEquals(expResult, result);
+        UserManager.getInstance().find("user").toggleLock();
     }
 }
