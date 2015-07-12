@@ -1,4 +1,4 @@
-package org.primefaces.showcase.view.panel;
+package rottenTomatoes;
  
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
