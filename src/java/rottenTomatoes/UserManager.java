@@ -29,6 +29,10 @@ import java.util.logging.Logger;
 public class UserManager implements Serializable{
     private static UserManager instance = new UserManager();
     
+    /**
+     *
+     * @return Instance of usermanager
+     */
     public static UserManager getInstance() { return instance; }
     
     
@@ -48,21 +52,41 @@ public class UserManager implements Serializable{
         users.put("user", new UserData("nliu41@gatech.edu", "Admin", "user", "pass"));
     }
     
+    /**
+     * Change name for certain user
+     * @param oldName old username
+     * @param newName new username
+     */
     public void addUser(String oldName, String newName) {
         UserData data = users.get(oldName);
         users.remove(oldName);
         users.put(newName, data);   
     }
     
+    /**
+     * Add new user
+     * @param email
+     * @param name
+     * @param username
+     * @param password
+     */
     public void addUser(String email, String name, String username, String password) {
         users.put(username, new UserData(email, name, username, password));
     }
     
+    /**
+     * Edit user's data
+     * @param username username
+     * @param data new userdata
+     */
     public void editUserData(String username, UserData data) {
         users.remove(username);
         users.put(username, data);
     }
     
+    /**
+     * Save data of application
+     */
     public void saveBinary() {
         try {
             ObjectOutputStream os = new ObjectOutputStream(
@@ -74,6 +98,9 @@ public class UserManager implements Serializable{
         }
     }
     
+    /**
+     *  Load data of application
+     */
     public void loadBinary() {
         try {
             ObjectInputStream is = new ObjectInputStream(
@@ -87,15 +114,28 @@ public class UserManager implements Serializable{
         }
     }
 
+    /**
+     * find a certain user with their username
+     * @param username
+     * @return
+     */
     public UserData find(String username) {
        System.out.println("Looking up user: " + username);
        return users.get(username);
     }
 
+    /**
+     * 
+     * @return map of users
+     */
     public Map getUsers() {
         return users;
     }
     
+    /**
+     * Set users
+     * @param users
+     */
     public void setUsers(Map users) {
         this.users = users;
     }

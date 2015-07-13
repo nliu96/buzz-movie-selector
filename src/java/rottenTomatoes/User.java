@@ -43,34 +43,66 @@ public class User implements Serializable {
     @ManagedProperty("#{search}")
     private Search search;
 
+    /**
+     *
+     * @param recommendations
+     */
     public void setRecommendations(List<Movie> recommendations) {
         this.recommendations = recommendations;
     }
 
+    /**
+     *
+     * @return recommendations based on current major
+     */
     public List<Movie> getRecommendations() {
         return recommendations;
     }
 
+    /**
+     *
+     * @param userRating
+     */
     public void setUserRating(int userRating) {
         this.userRating = userRating;
     }
 
+    /**
+     *
+     * @return user rating
+     */
     public int getUserRating() {
         return userRating;
     }
 
+    /**
+     *
+     * @param data
+     */
     public void setData(UserData data) {
         this.data = data;
     }
 
+    /**
+     *
+     * @param currentMovie
+     */
     public void setCurrentMovie(Movie currentMovie) {
         this.currentMovie = currentMovie;
     }
 
+    /**
+     *
+     * @return userdata
+     */
     public UserData getData() {
         return data;
     }
 
+    /**
+     *
+     * @return currently selected movie
+     */
     public Movie getCurrentMovie() {
         return currentMovie;
     }
@@ -156,55 +188,102 @@ public class User implements Serializable {
         return searchTerm;
     }
     
+    /**
+     * 
+     * @return get search object
+     */
     public Search getSearch() {
         return search;
     }
     
+    /**
+     *
+     * @param u username
+     */
     public void setUsername(String u) {
         System.out.println("Setting username to " + u);
         username = u;
     }
     
+    /**
+     *
+     * @param p password
+     */
     public void setPassword(String p) {
         System.out.println("Setting password to " + p);
         password = p;
     }
     
+    /**
+     *
+     * @param np new password
+     */
     public void setNewPassword(String np) {
         newPassword = np;
     }
     
+    /**
+     *
+     * @param nun new username
+     */
     public void setNewUsername(String nun) {
         newUsername = nun;
     }
     
+    /**
+     *
+     * @param n name
+     */
     public void setName(String n) {
         System.out.println("Setting name to " + n);
         name = n;
     }
     
+    /**
+     *
+     * @param em email
+     */
     public void setEmail(String em) {
         System.out.println("Setting email to " + em);
         email = em;
     }
     
+    /**
+     *
+     * @param i interest
+     */
     public void setInterests(String i) {
         interests = i;
     }
     
+    /**
+     *
+     * @param m major
+     */
     public void setMajor(String m) {
         major = m;
     }
    
-    
+    /**
+     *
+     * @param st search term
+     */
     public void setSearchTerm(String st) {
         searchTerm = st;
     }
     
+    /**
+     *
+     * @param searchResults
+     */
     public void setSearchResults(List<Movie> searchResults) {
         this.searchResults = searchResults;
     }
         
+    /**
+     *
+     * @param username
+     */
     public void setData(String username) {
         this.data = UserManager.getInstance().find(username);
         setMajor(data.getMajor());
@@ -213,12 +292,20 @@ public class User implements Serializable {
         setInterests(data.getInterests());
     }
     
+    /**
+     *
+     * @return profile page
+     */
     public String editPassword() {
         setPassword(newPassword);
         data.setPassword(newPassword);
         return "profile.xhtml?faces-redirect=true";
     }
     
+    /**
+     *
+     * @return profile page
+     */
     public String editUsername() {
         UserManager.getInstance().addUser(username, newUsername);
         setUsername(newUsername);
@@ -226,6 +313,10 @@ public class User implements Serializable {
         return "profile.xhtml?faces-redirect=true";
     }
     
+    /**
+     *
+     * @return profile pages
+     */
     public String editProfile() {
         UserData ud = UserManager.getInstance().find(username);
         ud.setEmail(email);
@@ -235,11 +326,19 @@ public class User implements Serializable {
         return "profile.xhtml?faces-redirect=true";
     }
     
+    /**
+     *
+     * @return profile page
+     */
     public String cancelChanges() {
         setData(username);
         return "profile.xhtml?faces-redirect=true";
     }
     
+    /**
+     *
+     * @return page to be directed to
+     */
     public String login() {
         System.out.println("Doing some business logic here");
         UserData data = UserManager.getInstance().find(username);
@@ -262,6 +361,10 @@ public class User implements Serializable {
         return "welcome.xhtml?faces-redirect=true";
     }   
 
+    /**
+     *
+     * @return welcome page
+     */
     public String logOut() {
         UserManager.getInstance().saveBinary();
         MovieManager.getInstance().saveBinary();
@@ -269,15 +372,29 @@ public class User implements Serializable {
         return "index.xhtml?faces-redirect=true";
     }
     
+    /**
+     *
+     * @return search results
+     */
     public List<Movie> getSearchResults() {
         return searchResults;
     }
     
+    /**
+     * search movie using search term
+     * @return search results page
+     */
     public String searchMovies() {
         searchResults = search.getSearchResults(searchTerm);
         return "searchResults.xhtml?faces-redirect=true";
     }
     
+    /**
+     * add movie if not in database and go to page with movie details
+     * @param id
+     * @param movie
+     * @return movie info page
+     */
     public String viewDetails(String id, Movie movie) {
         if(!MovieManager.getInstance().getMovies().containsKey(id)) {
             MovieManager.getInstance().addMovie(movie.getId(), movie);
@@ -293,6 +410,9 @@ public class User implements Serializable {
         return "movieInfo";
     }
     
+    /**
+     * add rating to moviemanager
+     */
     public void addRating() {
         System.out.println(userRating);
         currentMovie.addRating(username, new UserRating(userRating, data));
@@ -300,23 +420,43 @@ public class User implements Serializable {
         System.out.println(lol.getRating());
     }
     
+    /**
+     * get recommenations based on major
+     * @return Recommendations page
+     */
     public String recommend() {
         recommendations = MovieManager.getInstance().getRecommendations(major);
         return "recommendations.xhtml?faces-redirect=true   ";
     }
     
+    /**
+     * get new movies
+     * @return new movies list
+     */
     public String getNewMovieList() {
         return search.getNewMovieList();
     }
     
+    /**
+     *
+     * @return new dvds list
+     */
     public String getNewDvdList() {
         return search.getNewDvdList();
     }
     
+    /**
+     *
+     * @param search
+     */
     public void setSearch(Search search) {
         this.search = search;
     }
     
+    /**
+     * Add new user to user manager
+     * @return welcome page
+     */
     public String register() {
         UserManager.getInstance().addUser(email, name, username, password);
         return "index.xhtml?faces-redirect=true";
