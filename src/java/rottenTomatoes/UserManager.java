@@ -75,9 +75,9 @@ public class UserManager implements Serializable{
     }
     
     /**
-     * Edit user for
-     * @param username
-     * @param data
+     * Edit user's data
+     * @param username username
+     * @param data new userdata
      */
     public void editUserData(String username, UserData data) {
         users.remove(username);
@@ -85,7 +85,7 @@ public class UserManager implements Serializable{
     }
     
     /**
-     *
+     * Save data of application
      */
     public void saveBinary() {
         try {
@@ -99,7 +99,7 @@ public class UserManager implements Serializable{
     }
     
     /**
-     *
+     *  Load data of application
      */
     public void loadBinary() {
         try {
@@ -115,7 +115,7 @@ public class UserManager implements Serializable{
     }
 
     /**
-     *
+     * find a certain user with their username
      * @param username
      * @return
      */
@@ -125,15 +125,15 @@ public class UserManager implements Serializable{
     }
 
     /**
-     *
-     * @return
+     * 
+     * @return map of users
      */
     public Map getUsers() {
         return users;
     }
     
     /**
-     *
+     * Set users
      * @param users
      */
     public void setUsers(Map users) {
