@@ -19,22 +19,37 @@ import static org.junit.Assert.*;
 public class UserTest {
     private User instance;
     
+    /**
+     *
+     */
     public UserTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
         instance = new User();
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -52,6 +67,9 @@ public class UserTest {
         assertEquals(expResult, result);
     }
     
+    /**
+     * If correct, login should work
+     */
     @Test(expected = NullPointerException.class)
     public void testIncorrectLogin() {
         System.out.println("incorrect login");
@@ -62,6 +80,9 @@ public class UserTest {
         assertEquals(expResult, result);
     }
 
+    /**
+     * Testing if account is locked, then account cannot be logged into
+     */
     @Test(expected = NullPointerException.class)
     public void testLockedAccount() {
         System.out.println("locked account");
