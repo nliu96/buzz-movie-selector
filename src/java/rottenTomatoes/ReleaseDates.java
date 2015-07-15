@@ -26,8 +26,8 @@ public class ReleaseDates implements Serializable {
     private String dvd;
 
     /**
-     *
-     * @return
+     * 
+     * @return the theater
      */
     public String getTheater() {
         return theater;
@@ -35,7 +35,7 @@ public class ReleaseDates implements Serializable {
 
     /**
      *
-     * @return
+     * @return the DVD
      */
     public String getDvd() {
         return dvd;

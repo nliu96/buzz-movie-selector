@@ -24,7 +24,7 @@ public class Admin implements Serializable {
     List<UserData> users = new ArrayList<UserData>();
     
     /**
-     *
+     * Admin constructor
      */
     public Admin() {
         UserManager.getInstance().loadBinary();
@@ -32,7 +32,7 @@ public class Admin implements Serializable {
     }
     
     /**
-     *
+     * Loads the list of users
      */
     public void loadUserList() {
         List<UserData> users = new ArrayList<UserData>(UserManager.getInstance().getUsers().values());
@@ -40,8 +40,8 @@ public class Admin implements Serializable {
     }
     
     /**
-     *
-     * @return
+     * validates login for an Admin
+     * @return login validation
      */
     public String login() {
         loadUserList();
@@ -50,8 +50,8 @@ public class Admin implements Serializable {
     }
     
     /**
-     *
-     * @return
+     * Logout method
+     * @return index
      */
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
@@ -59,15 +59,15 @@ public class Admin implements Serializable {
     }
 
     /**
-     *
-     * @return
+     * Getter method for list of users
+     * @return the users
      */
     public List<UserData> getUsers() {
         return users;
     }
 
     /**
-     *
+     * Setter method for list of users
      * @param users
      */
     public void setUsers(List<UserData> users) {

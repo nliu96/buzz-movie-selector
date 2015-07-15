@@ -39,7 +39,7 @@ public class MovieLinks implements Serializable {
 
     /**
      *
-     * @return
+     * @return current movie link
      */
     public String getSelf() {
         return self;
@@ -47,7 +47,7 @@ public class MovieLinks implements Serializable {
 
     /**
      *
-     * @return
+     * @return alternate movie link
      */
     public String getAlternate() {
         return alternate;
@@ -55,7 +55,7 @@ public class MovieLinks implements Serializable {
 
     /**
      *
-     * @return
+     * @return cast of movie
      */
     public String getCast() {
         return cast;
@@ -63,7 +63,7 @@ public class MovieLinks implements Serializable {
 
     /**
      *
-     * @return
+     * @return similar link
      */
     public String getSimilar() {
         return similar;
@@ -71,7 +71,7 @@ public class MovieLinks implements Serializable {
 
     /**
      *
-     * @return
+     * @return reviews
      */
     public String getReviews() {
         return reviews;

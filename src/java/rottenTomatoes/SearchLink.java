@@ -22,7 +22,7 @@ public class SearchLink implements Serializable {
 
     /**
      *
-     * @return
+     * @return current link
      */
     public String getSelf() {
         return self;
@@ -30,7 +30,7 @@ public class SearchLink implements Serializable {
 
     /**
      *
-     * @return
+     * @return next link
      */
     public String getNext() {
         return next;

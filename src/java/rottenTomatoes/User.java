@@ -421,7 +421,7 @@ public class User implements Serializable {
     }
     
     /**
-     * get recommenations based on major
+     * get recommendations based on major
      * @return Recommendations page
      */
     public String recommend() {
@@ -439,7 +439,7 @@ public class User implements Serializable {
     
     /**
      *
-     * @return new dvds list
+     * @return new DVD's list
      */
     public String getNewDvdList() {
         return search.getNewDvdList();

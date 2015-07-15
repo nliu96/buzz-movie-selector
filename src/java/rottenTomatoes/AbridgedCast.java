@@ -29,23 +29,23 @@ public class AbridgedCast implements Serializable {
     private List<String> characters = new ArrayList<String>();
 
     /**
-     *
-     * @return
+     * Getter method for cast name
+     * @return name
      */
     public String getName() {
         return name;
     }
 
     /**
-     *
-     * @return
+     * Getter method for the characters
+     * @return characters
      */
     public List<String> getCharacters() {
         return characters;
     }
 
     /**
-     *
+     * Setter method for name
      * @param name
      */
     public void setName(String name) {
@@ -53,7 +53,7 @@ public class AbridgedCast implements Serializable {
     }
 
     /**
-     *
+     * Setter method for character names
      * @param characters
      */
     public void setCharacters(ArrayList<String> characters) {

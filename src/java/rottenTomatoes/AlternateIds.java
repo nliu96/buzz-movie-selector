@@ -19,7 +19,7 @@ public class AlternateIds implements Serializable {
     private String imdb;
 
     /**
-     *
+     * Alternate ID getter method
      * @return
      */
     public String getImdb() {
@@ -27,7 +27,7 @@ public class AlternateIds implements Serializable {
     }
 
     /**
-     *
+     * Alternate id setter method
      * @param imdb
      */
     public void setImdb(String imdb) {

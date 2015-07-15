@@ -69,112 +69,112 @@ public class Movie implements Serializable {
     private Map<String, UserRating> userRatings = new HashMap<>();
 
     /**
-     *
-     * @return
+     * Getter method for a movie Id
+     * @return id for the movie
      */
     public String getId() {
         return id;
     }
 
     /**
-     *
-     * @return
+     * Getter method for a movie title
+     * @return title of the movie
      */
     public String getTitle() {
         return title;
     }
 
     /**
-     *
-     * @return
+     * Getter method for the year a movie was produced
+     * @return year movie was made
      */
     public String getYear() {
         return year;
     }
 
     /**
-     *
-     * @return
+     * Getter method for the list of genres for the movie
+     * @return list of different genres
      */
     public List<String> getGenres() {
         return genres;
     }
 
     /**
-     *
-     * @return
+     * Get rating
+     * @return rating
      */
     public String getMpaa_rating() {
         return mpaa_rating;
     }
 
     /**
-     *
-     * @return
+     * Getter method for the movie runtime
+     * @return runtime
      */
     public String getRuntime() {
         return runtime;
     }
 
     /**
-     *
-     * @return
+     * Getter method for the consensus of critics
+     * @return critics consensus
      */
     public String getCritics_concensus() {
         return critics_concensus;
     }
 
     /**
-     *
-     * @return
+     * Getter method for release date for the movie
+     * @return release date
      */
     public ReleaseDates getRelease_dates() {
         return release_dates;
     }
 
     /**
-     *
-     * @return
+     * Getter method for movie ratings
+     * @return ratings
      */
     public Ratings getRatings() {
         return ratings;
     }
 
     /**
-     *
-     * @return
+     * Getter method for movie's synopsis
+     * @return synopsis
      */
     public String getSynopsis() {
         return synopsis;
     }
 
     /**
-     *
-     * @return
+     * Getter method for movie's posters
+     * @return posters
      */
     public Posters getPosters() {
         return posters;
     }
 
     /**
-     *
-     * @return
+     * Getter method for list of abridged cast
+     * @return abridged cast
      */
     public List<AbridgedCast> getAbridged_cast() {
         return abridged_cast;
     }
 
     /**
-     *
-     * @return
+     * Getter method for list of abridged directors
+     * @return abridge directors
      */
     public List<AbridgedDirectors> getAbridged_directors() {
         return abridged_directors;
     }
 
     /**
-     *
-     * @return
+     * 
+     * @return movie's studio
      */
     public String getStudio() {
         return studio;
@@ -182,7 +182,7 @@ public class Movie implements Serializable {
 
     /**
      *
-     * @return
+     * @return alternate Id's
      */
     public AlternateIds getAlternate_ids() {
         return alternate_ids;
@@ -190,7 +190,7 @@ public class Movie implements Serializable {
 
     /**
      *
-     * @return
+     * @return links to the movie
      */
     public MovieLinks getLinks() {
         return links;
@@ -198,7 +198,7 @@ public class Movie implements Serializable {
 
     /**
      *
-     * @return
+     * @return the user ratings from the site
      */
     public Map getUserRatings() {
         return userRatings;
@@ -374,7 +374,7 @@ public class Movie implements Serializable {
     }
     
     /**
-     *
+     * Returns the movie ratings by a certain major
      * @param major
      * @return
      */

@@ -35,7 +35,7 @@ public class MovieManager implements Serializable {
     
     /**
      *
-     * @return
+     * @return the instance of a movie manager
      */
     public static MovieManager getInstance() { return instance; }
     
@@ -44,15 +44,15 @@ public class MovieManager implements Serializable {
     private static Logger myLogger = Logger.getLogger("example.Company");
     
     /**
-     *
+     * Movie Manager constructor
      */
     public MovieManager() {
         System.out.println("Creating Movie Manager");
     }
     
     /**
-     *
-     * @return
+     * Getter for current movie
+     * @return current movie
      */
     public Movie getCurrentMovie() {
         return currentMovie;
@@ -60,7 +60,7 @@ public class MovieManager implements Serializable {
     
     /**
      *
-     * @return
+     * @return Map of movies
      */
     public Map getMovies() {
         return movies;
@@ -109,7 +109,7 @@ public class MovieManager implements Serializable {
     }
     
     /**
-     *
+     * saves movie data
      */
     public void saveBinary() {
         try {
@@ -123,7 +123,7 @@ public class MovieManager implements Serializable {
     }
 
     /**
-     *
+     * loads movie data
      */
     public void loadBinary() {
         try {

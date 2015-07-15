@@ -14,7 +14,7 @@ import org.primefaces.event.ToggleEvent;
 public class FieldsetView {
      
     /**
-     *
+     * Event handler
      * @param event
      */
     public void handleToggle(ToggleEvent event) {

@@ -21,7 +21,7 @@ public class UserData implements Serializable{
     private boolean status;
     
     /**
-     * Create userdata with necessary params
+     * Create user data with necessary parameters
      * @param em
      * @param n
      * @param usnm

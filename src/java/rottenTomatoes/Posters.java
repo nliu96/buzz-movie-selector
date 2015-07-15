@@ -18,39 +18,39 @@ public class Posters implements Serializable {
     private String original;
 
     /**
-     *
-     * @return
+     * Getter for thumbnail
+     * @return thumbnail
      */
     public String getThumbnail() {
         return thumbnail;
     }
 
     /**
-     *
-     * @return
+     * Getter for profile
+     * @return profile
      */
     public String getProfile() {
         return profile;
     }
 
     /**
-     *
-     * @return
+     * 
+     * @return details
      */
     public String getDetailed() {
         return detailed;
     }
 
     /**
-     *
-     * @return
+     * 
+     * @return original
      */
     public String getOriginal() {
         return original;
     }
 
     /**
-     *
+     * 
      * @param thumbnail
      */
     public void setThumbnail(String thumbnail) {

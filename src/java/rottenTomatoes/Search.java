@@ -88,7 +88,7 @@ public class Search {
     /**
      * Get data from URL
      * @param link
-     * @return 
+     * @return data
      */
     protected String getData(String link) {
         URL url = null;
@@ -144,7 +144,7 @@ public class Search {
     
     /**
      * Get new dvd list from rotten tomatoes using API
-     * @return 
+     * @return list of new DVD's 
      */
     public String getNewDvdList() {
         System.out.println("Getting the REST data");
@@ -160,7 +160,7 @@ public class Search {
     
     /**
      * Get new movie list from rotten tomatoes using API
-     * @return 
+     * @return list of new movies
      */
     public String getNewMovieList() {
         System.out.println("Getting the REST data");

@@ -15,15 +15,15 @@ public class AbridgedDirectors implements Serializable {
     private String name;
 
     /**
-     *
-     * @return
+     * Getter method for director name
+     * @return name
      */
     public String getName() {
         return name;
     }
 
     /**
-     *
+     * Setter method for director name
      * @param name
      */
     public void setName(String name) {

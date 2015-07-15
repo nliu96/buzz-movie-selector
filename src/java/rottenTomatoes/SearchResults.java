@@ -28,8 +28,8 @@ public class SearchResults {
     private String link_Template;
 
     /**
-     *
-     * @return
+     * Getter method for number of results
+     * @return total
      */
     public String getTotal() {
         return total;
@@ -37,7 +37,7 @@ public class SearchResults {
 
     /**
      *
-     * @return
+     * @return movie search results
      */
     public List<Movie> getMovies() {
         return movies;
@@ -45,7 +45,7 @@ public class SearchResults {
 
     /**
      *
-     * @return
+     * @return links form search results
      */
     public SearchLink getLinks() {
         return links;
@@ -53,7 +53,7 @@ public class SearchResults {
 
     /**
      *
-     * @return
+     * @return movie link template
      */
     public String getLink_Template() {
         return link_Template;

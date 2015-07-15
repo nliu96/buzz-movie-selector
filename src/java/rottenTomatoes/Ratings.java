@@ -19,7 +19,7 @@ public class Ratings implements Serializable {
 
     /**
      *
-     * @return
+     * @return rating from critics
      */
     public String getCritics_rating() {
         return critics_rating;
@@ -27,7 +27,7 @@ public class Ratings implements Serializable {
 
     /**
      *
-     * @return
+     * @return scores from critics
      */
     public String getCritics_scores() {
         return critics_scores;
@@ -35,7 +35,7 @@ public class Ratings implements Serializable {
 
     /**
      *
-     * @return
+     * @return rating from the audience
      */
     public String getAudience_rating() {
         return audience_rating;
@@ -43,7 +43,7 @@ public class Ratings implements Serializable {
 
     /**
      *
-     * @return
+     * @return score from the audience
      */
     public String getAudience_score() {
         return audience_score;
