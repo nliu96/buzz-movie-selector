@@ -23,31 +23,53 @@ import javax.faces.context.FacesContext;
 public class Admin implements Serializable {
     List<UserData> users = new ArrayList<UserData>();
     
+    /**
+     * Admin constructor
+     */
     public Admin() {
         UserManager.getInstance().loadBinary();
         MovieManager.getInstance().loadBinary();
     }
     
+    /**
+     * loads the list of users
+     */
     public void loadUserList() {
         List<UserData> users = new ArrayList<UserData>(UserManager.getInstance().getUsers().values());
         this.users = users;
     }
     
+    /**
+     *
+     * @return validity of login
+     */
     public String login() {
         loadUserList();
         System.out.println("Admin login");
         return "admin.xhtml?faces-redirect=true";
     }
     
+    /**
+     *
+     * @return index
+     */
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "index";
     }
 
+    /**
+     *
+     * @return users
+     */
     public List<UserData> getUsers() {
         return users;
     }
 
+    /**
+     *
+     * @param users
+     */
     public void setUsers(List<UserData> users) {
         this.users = users;
     }
