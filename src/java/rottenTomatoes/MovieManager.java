@@ -33,36 +33,71 @@ public class MovieManager implements Serializable {
 
     private static MovieManager instance = new MovieManager();
     
+    /**
+     *
+     * @return
+     */
     public static MovieManager getInstance() { return instance; }
     
     private Map<String, Movie> movies = new HashMap<>();
     private Movie currentMovie;
     private static Logger myLogger = Logger.getLogger("example.Company");
     
+    /**
+     *
+     */
     public MovieManager() {
         System.out.println("Creating Movie Manager");
     }
     
+    /**
+     *
+     * @return
+     */
     public Movie getCurrentMovie() {
         return currentMovie;
     }
     
+    /**
+     *
+     * @return
+     */
     public Map getMovies() {
         return movies;
     }
     
+    /**
+     *
+     * @param id
+     * @param movie
+     */
     public void addMovie(String id, Movie movie) {
         movies.put(id, movie);
     }
     
+    /**
+     *
+     * @param id
+     * @param movie
+     */
     public void editMovieData(String id, Movie movie) {
         movies.put(id, movie);
     }
     
+    /**
+     *
+     * @param title
+     * @return
+     */
     public Movie find(String title) {
         return movies.get(title);
     }
     
+    /**
+     *
+     * @param major
+     * @return
+     */
     public List<Movie> getRecommendations(String major) {
         List<Movie> recommendations = new ArrayList<Movie>();
         for(Movie movie: movies.values()) {
@@ -73,6 +108,9 @@ public class MovieManager implements Serializable {
         return recommendations;
     }
     
+    /**
+     *
+     */
     public void saveBinary() {
         try {
             ObjectOutputStream os = new ObjectOutputStream(
@@ -84,6 +122,9 @@ public class MovieManager implements Serializable {
         }
     }
 
+    /**
+     *
+     */
     public void loadBinary() {
         try {
             ObjectInputStream is = new ObjectInputStream(

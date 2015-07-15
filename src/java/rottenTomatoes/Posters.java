@@ -17,34 +17,66 @@ public class Posters implements Serializable {
     private String detailed;
     private String original;
 
+    /**
+     *
+     * @return
+     */
     public String getThumbnail() {
         return thumbnail;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getProfile() {
         return profile;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDetailed() {
         return detailed;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getOriginal() {
         return original;
     }
 
+    /**
+     *
+     * @param thumbnail
+     */
     public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
     }
 
+    /**
+     *
+     * @param profile
+     */
     public void setProfile(String profile) {
         this.profile = profile;
     }
 
+    /**
+     *
+     * @param detailed
+     */
     public void setDetailed(String detailed) {
         this.detailed = detailed;
     }
 
+    /**
+     *
+     * @param original
+     */
     public void setOriginal(String original) {
         this.original = original;
     }

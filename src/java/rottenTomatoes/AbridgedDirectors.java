@@ -14,10 +14,18 @@ import java.io.Serializable;
 public class AbridgedDirectors implements Serializable {
     private String name;
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }

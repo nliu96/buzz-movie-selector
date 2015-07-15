@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
 
+/**
+ *
+ * @author dylanfloyd
+ */
 @Generated("org.jsonschema2pojo")
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,18 +28,34 @@ public class AbridgedCast implements Serializable {
     @Expose
     private List<String> characters = new ArrayList<String>();
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<String> getCharacters() {
         return characters;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @param characters
+     */
     public void setCharacters(ArrayList<String> characters) {
         this.characters = characters;
     }

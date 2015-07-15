@@ -9,6 +9,10 @@ import com.google.gson.annotations.Expose;
 import java.io.Serializable;
 import javax.annotation.Generated;
 
+/**
+ *
+ * @author dylanfloyd
+ */
 @Generated("org.jsonschema2pojo")
 /**
  *
@@ -21,18 +25,34 @@ public class ReleaseDates implements Serializable {
     @Expose
     private String dvd;
 
+    /**
+     *
+     * @return
+     */
     public String getTheater() {
         return theater;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDvd() {
         return dvd;
     }
 
+    /**
+     *
+     * @param theater
+     */
     public void setTheater(String theater) {
         this.theater = theater;
     }
 
+    /**
+     *
+     * @param dvd
+     */
     public void setDvd(String dvd) {
         this.dvd = dvd;
     }
