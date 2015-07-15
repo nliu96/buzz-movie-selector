@@ -7,7 +7,6 @@ package rottenTomatoes;
  */
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -26,19 +25,20 @@ import java.util.logging.Logger;
  */
 @ManagedBean (name = "userManager")
 @ApplicationScoped
-public class UserManager implements Serializable{
+public class UserManager implements Serializable {
     private static UserManager instance = new UserManager();
     
     /**
      *
      * @return Instance of usermanager
      */
-    public static UserManager getInstance() { return instance; }
+    public static UserManager getInstance() {
+        return instance;
+    }
     
     
     private Map<String, UserData> users = new HashMap<>();
     
-    private static Logger myLogger = Logger.getLogger("example.Company");
     
     /**
      * Creates a new instance of UserManager
@@ -49,7 +49,8 @@ public class UserManager implements Serializable{
     }
 
     private void makeSomeUsers() {
-        users.put("user", new UserData("nliu41@gatech.edu", "Admin", "user", "pass"));
+        users.put("user", new UserData("nliu41@gatech.edu",
+                "Admin", "user", "pass"));
     }
     
     /**
@@ -70,7 +71,8 @@ public class UserManager implements Serializable{
      * @param username
      * @param password
      */
-    public void addUser(String email, String name, String username, String password) {
+    public void addUser(String email, String name,
+            String username, String password) {
         users.put(username, new UserData(email, name, username, password));
     }
     
@@ -94,7 +96,8 @@ public class UserManager implements Serializable{
             os.writeObject(users);
             os.close();
         } catch (IOException ex) {
-            Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserManager.class.getName())
+                    .log(Level.SEVERE, null, ex);
         }
     }
     
@@ -108,9 +111,11 @@ public class UserManager implements Serializable{
             users = (Map<String, UserData>) is.readObject();
             is.close();
         } catch (IOException ex) {
-            Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserManager.class.getName())
+                    .log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserManager.class.getName())
+                    .log(Level.SEVERE, null, ex);
         }
     }
 

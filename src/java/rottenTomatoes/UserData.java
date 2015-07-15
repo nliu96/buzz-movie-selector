@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Nick Liu
  */
-public class UserData implements Serializable{
+public class UserData implements Serializable {
     private String name;
     private String username;
     private String password;
@@ -26,6 +26,17 @@ public class UserData implements Serializable{
      * @param n
      * @param usnm
      * @param ps
+     */
+    public UserData() {
+        
+    }
+    
+    /**
+     * Construct user data with email, name, username, and password
+     * @param em
+     * @param n
+     * @param usnm
+     * @param ps 
      */
     public UserData(String em, String n, String usnm, String ps) {
         email = em;

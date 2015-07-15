@@ -6,7 +6,7 @@ public class Theme {
     private String displayName; 
     private String name;
      
-    public Theme() {}
+    public Theme() { }
  
     public Theme(int id, String displayName, String name) {
         this.id = id;

@@ -14,7 +14,6 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.bean.ApplicationScoped;
 
 /**
  *
@@ -343,11 +342,12 @@ public class User implements Serializable {
         System.out.println("Doing some business logic here");
         UserData data = UserManager.getInstance().find(username);
         if (data == null || !data.checkLogin(password)) {
-            username="";
-            password="";
+            username = "";
+            password = "";
             System.out.println("No such user found or password wrong");
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Username or Password incorrect"));
+            context.addMessage(null,
+                    new FacesMessage("Username or Password incorrect"));
             return null;
         }
         if (!data.getStatus()) {
@@ -368,7 +368,8 @@ public class User implements Serializable {
     public String logOut() {
         UserManager.getInstance().saveBinary();
         MovieManager.getInstance().saveBinary();
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        FacesContext.getCurrentInstance().getExternalContext()
+                .invalidateSession();
         return "index.xhtml?faces-redirect=true";
     }
     
@@ -396,12 +397,13 @@ public class User implements Serializable {
      * @return movie info page
      */
     public String viewDetails(String id, Movie movie) {
-        if(!MovieManager.getInstance().getMovies().containsKey(id)) {
+        if (!MovieManager.getInstance().getMovies().containsKey(id)) {
             MovieManager.getInstance().addMovie(movie.getId(), movie);
         }
         currentMovie = MovieManager.getInstance().find(movie.getId());
-        if(currentMovie.getUserRatings().containsKey(username)) {
-            UserRating movieRating = (UserRating) currentMovie.getUserRatings().get(username);
+        if (currentMovie.getUserRatings().containsKey(username)) {
+            UserRating movieRating =
+                    (UserRating) currentMovie.getUserRatings().get(username);
             userRating  = movieRating.getRating();
             System.out.println("success");
         } else {
@@ -416,7 +418,8 @@ public class User implements Serializable {
     public void addRating() {
         System.out.println(userRating);
         currentMovie.addRating(username, new UserRating(userRating, data));
-        UserRating lol = (UserRating) currentMovie.getUserRatings().get(username);
+        UserRating lol = (UserRating)
+                currentMovie.getUserRatings().get(username);
         System.out.println(lol.getRating());
     }
     

@@ -1,7 +1,6 @@
 package rottenTomatoes;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -14,7 +13,6 @@ import java.util.Map;
 import java.util.logging.Level;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ApplicationScoped;
-import rottenTomatoes.Movie;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,12 +35,12 @@ public class MovieManager implements Serializable {
      *
      * @return the instance of a movie manager
      */
-    public static MovieManager getInstance() { return instance; }
+    public static MovieManager getInstance() {
+        return instance;
+    }
     
     private Map<String, Movie> movies = new HashMap<>();
     private Movie currentMovie;
-    private static Logger myLogger = Logger.getLogger("example.Company");
-    
     /**
      * Movie Manager constructor
      */
@@ -100,8 +98,8 @@ public class MovieManager implements Serializable {
      */
     public List<Movie> getRecommendations(String major) {
         List<Movie> recommendations = new ArrayList<Movie>();
-        for(Movie movie: movies.values()) {
-            if(movie.ratingByMajor(major) > 3) {
+        for (Movie movie: movies.values()) {
+            if (movie.ratingByMajor(major) > 3) {
                 recommendations.add(movie);
             }
         }
@@ -118,7 +116,8 @@ public class MovieManager implements Serializable {
             os.writeObject(movies);
             os.close();
         } catch (IOException ex) {
-            Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserManager.class.getName())
+                    .log(Level.SEVERE, null, ex);
         }
     }
 
@@ -132,9 +131,11 @@ public class MovieManager implements Serializable {
             movies = (Map<String, Movie>) is.readObject();
             is.close();
         } catch (IOException ex) {
-            Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserManager.class.
+                    getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserManager.class.
+                    getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

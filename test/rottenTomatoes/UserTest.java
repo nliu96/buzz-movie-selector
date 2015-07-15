@@ -5,7 +5,6 @@
  */
 package rottenTomatoes;
 
-import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,7 +17,7 @@ import static org.junit.Assert.*;
  * @author NIck
  */
 public class UserTest {
-    User instance;
+    private User instance;
     
     public UserTest() {
     }
@@ -51,10 +50,9 @@ public class UserTest {
         instance.setPassword("pass");
         String result = instance.login();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
     }
     
-    @Test(expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testIncorrectLogin() {
         System.out.println("incorrect login");
         String expResult = null;
@@ -63,8 +61,8 @@ public class UserTest {
         String result = instance.login();
         assertEquals(expResult, result);
     }
-    
-    @Test(expected=NullPointerException.class)
+
+    @Test(expected = NullPointerException.class)
     public void testLockedAccount() {
         System.out.println("locked account");
         String expResult = null;

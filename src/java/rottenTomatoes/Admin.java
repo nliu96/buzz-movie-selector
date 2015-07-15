@@ -8,9 +8,7 @@ package rottenTomatoes;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -35,7 +33,8 @@ public class Admin implements Serializable {
      * Loads the list of users
      */
     public void loadUserList() {
-        List<UserData> users = new ArrayList<UserData>(UserManager.getInstance().getUsers().values());
+        List<UserData> users = new 
+            ArrayList<UserData>(UserManager.getInstance().getUsers().values());
         this.users = users;
     }
     
@@ -54,7 +53,8 @@ public class Admin implements Serializable {
      * @return index
      */
     public String logout() {
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        FacesContext.getCurrentInstance().getExternalContext()
+                .invalidateSession();
         return "index";
     }
 

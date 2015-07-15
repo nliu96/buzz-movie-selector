@@ -28,7 +28,7 @@ public class Movie implements Serializable {
     private String year;
     
     @Expose
-    private List<String>genres = new ArrayList<String>();
+    private List<String> genres = new ArrayList<String>();
     
     @Expose
     private String mpaa_rating;
@@ -55,7 +55,8 @@ public class Movie implements Serializable {
     private List<AbridgedCast> abridged_cast = new ArrayList<AbridgedCast>();
     
     @Expose
-    private List<AbridgedDirectors> abridged_directors = new ArrayList<AbridgedDirectors>();
+    private List<AbridgedDirectors> abridged_directors
+            = new ArrayList<AbridgedDirectors>();
     
     @Expose
     private String studio;
@@ -296,7 +297,8 @@ public class Movie implements Serializable {
      *
      * @param abridged_cast
      */
-    public void setAbridged_cast(ArrayList<AbridgedCast> abridged_cast) {
+    public void setAbridged_cast(
+            ArrayList<AbridgedCast> abridged_cast) {
         this.abridged_cast = abridged_cast;
     }
 
@@ -304,7 +306,8 @@ public class Movie implements Serializable {
      *
      * @param abridged_directors
      */
-    public void setAbridged_directors(ArrayList<AbridgedDirectors> abridged_directors) {
+    public void setAbridged_directors(
+            ArrayList<AbridgedDirectors> abridged_directors) {
         this.abridged_directors = abridged_directors;
     }
 
@@ -352,7 +355,8 @@ public class Movie implements Serializable {
      *
      * @param abridged_directors
      */
-    public void setAbridged_directors(List<AbridgedDirectors> abridged_directors) {
+    public void setAbridged_directors(List<AbridgedDirectors>
+            abridged_directors) {
         this.abridged_directors = abridged_directors;
     }
 
@@ -381,16 +385,16 @@ public class Movie implements Serializable {
     public int ratingByMajor(String major) {
         int rateMajor = 0;
         int count = 0;
-        for(UserRating rates : userRatings.values()) {
-            if(rates.getMajor().equals(major)) {
+        for (UserRating rates : userRatings.values()) {
+            if (rates.getMajor().equals(major)) {
                 rateMajor += rates.getRating();
                 count++;
             }
         }
-        if(count == 0) {
+        if (count == 0) {
             return 3;
         }
-        rateMajor = rateMajor/count;
+        rateMajor = rateMajor / count;
         return rateMajor;
     }
 }

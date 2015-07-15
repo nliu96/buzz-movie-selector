@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
  
 import org.primefaces.showcase.domain.Theme;
  
-@ManagedBean(name="themeService", eager = true)
+@ManagedBean(name = "themeService", eager = true)
 @ApplicationScoped
 public class ThemeService {
      

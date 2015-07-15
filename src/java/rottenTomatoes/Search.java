@@ -36,6 +36,10 @@ public class Search {
     private List<Movie> newMovies = new ArrayList<Movie>();
     private List<Movie> newDvds = new ArrayList<Movie>();
 
+    public Search() {
+        
+    }
+    
     /**
      * Get movie list
      * @return movie list
@@ -96,7 +100,8 @@ public class Search {
         try {
                 url = new URL(link);
         
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		HttpURLConnection conn =
+                        (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
 		conn.setRequestProperty("Accept", "application/json");
  
@@ -111,13 +116,14 @@ public class Search {
 		System.out.println("Output from Server .... \n");
 		while ((output = br.readLine()) != null) {
 			System.out.println(output);
-                        data+=output;
+                        data += output;
 		}
                 System.out.println("Got JSON: " + data);
 		conn.disconnect();
                 
                 } catch (MalformedURLException ex) {
-                   Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+                   Logger.getLogger(User.class.getName()).
+                           log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
                     System.out.println("Cannot open url");
                 }
@@ -133,8 +139,10 @@ public class Search {
     public List<Movie> getSearchResults(String searchTerm) {
         System.out.println("Getting the REST data");
         Gson gson = new Gson();
-        String link = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=yedukp76ffytfuy24zsqk7f5&q="
-                + (searchTerm.replaceAll(" ", "+")) + "&page_limit=10";
+        String link = "http://api.rottentomatoes.com/api/public/"
+                + "v1.0/movies.json?apikey=yedukp76ffytfuy24zsqk7f5&q="
+                + searchTerm.replaceAll(" ", "+")
+                + "&page_limit=10";
         String data = getData(link);
         SearchResults response = gson.fromJson(data, SearchResults.class);
         movies = response.getMovies();
@@ -149,8 +157,9 @@ public class Search {
     public String getNewDvdList() {
         System.out.println("Getting the REST data");
         Gson gson = new Gson();
-        String link = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json"
-                + "?page_limit=16&page=1&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
+        String link = "http://api.rottentomatoes.com/api/public/"
+                + "v1.0/lists/dvds/new_releases.json?page_limit=16&page=1"
+                + "&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
         String data = getData(link);
         SearchResults response = gson.fromJson(data, SearchResults.class);
         newDvds = response.getMovies();
@@ -165,7 +174,8 @@ public class Search {
     public String getNewMovieList() {
         System.out.println("Getting the REST data");
         Gson gson = new Gson();
-        String link = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/opening.json"
+        String link = "http://api.rottentomatoes.com/api/public/v1.0"
+                + "/lists/movies/opening.json"
                 + "?limit=16&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
         String data = getData(link);
         SearchResults response = gson.fromJson(data, SearchResults.class);
