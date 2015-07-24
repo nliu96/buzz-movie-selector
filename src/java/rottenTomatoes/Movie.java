@@ -68,6 +68,20 @@ public class Movie implements Serializable {
     private MovieLinks links;
     
     private Map<String, UserRating> userRatings = new HashMap<>();
+    
+    private List<String> comments = new ArrayList<>();
+
+    public void setComments(List<String> comments) {
+        this.comments = comments;
+    }
+
+    public List<String> getComments() {
+        return comments;
+    }
+    
+    public void addComments(String comment) {
+        comments.add(comment);
+    }
 
     /**
      * Getter method for a movie Id

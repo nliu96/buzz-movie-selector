@@ -31,6 +31,7 @@ public class User implements Serializable {
     private String interests;
     private String newUsername;
     private String newPassword;
+    private String comments;
     
     private List<Movie> searchResults = new ArrayList<Movie>();
     private List<Movie> recommendations = new ArrayList<Movie>();
@@ -42,6 +43,19 @@ public class User implements Serializable {
     @ManagedProperty("#{search}")
     private Search search;
 
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public String addComment() {
+        currentMovie.addComments(username + ": " + comments);
+        return "movieInfo";
+    }
+    
     /**
      *
      * @param recommendations

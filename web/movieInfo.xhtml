@@ -8,7 +8,8 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Movie Info</title>
         <link rel="stylesheet" type="text/css" href="mystyle.css"/>
@@ -31,13 +32,24 @@ and open the template in the editor.
                     <h:outputText value="#{user.currentMovie.synopsis}" />
                 </h:panelGrid>
             </p:fieldset>
-            <p:panel>
+            <p:panel style="margin-bottom:20px">
                 <h:panelGrid columns="2" cellpadding="5" id="panel">
-                    <h:outputText value="Basic:" />
+                    <h:outputText value="Rating:" />
                     <p:rating value="#{user.userRating}"/>
                 </h:panelGrid>
                 <p:commandButton update="panel" value="Submit" action="#{user.addRating()}"/>
             </p:panel>
+            
+            <p:panel style="margin-bottom:20px" id="comments">
+            <ui:repeat var="item" value="#{user.currentMovie.comments}"> <h1 style="font-size: 20px">#{item}</h1> </ui:repeat>
+
+            </p:panel>
+            <p:inputTextarea rows="5" cols="30" counter="display" maxlength="200" 
+                                 value="#{user.comments}" counterTemplate="{0} characters remaining." 
+                                 autoResize="false" />
+            <h:outputText id="display" />
+
+            <p:commandButton value="Submit" update="comments" action="#{user.addComment()}" icon="ui-icon-check" />
         </h:form>
     </h:body>
 </html>

@@ -7,4 +7,6 @@ and open the template in the editor.
     Created on : Jun 4, 2015, 3:00:08 PM
     Author     : theaz_000
 */
-
+body {
+    background-color: rgb(255, 255, 153);
+}

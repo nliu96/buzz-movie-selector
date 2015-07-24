@@ -35,6 +35,7 @@ public class Search {
     private List<Movie> movies = new ArrayList<Movie>();
     private List<Movie> newMovies = new ArrayList<Movie>();
     private List<Movie> newDvds = new ArrayList<Movie>();
+    private List<Movie> upcomingMovies = new ArrayList<Movie>();
 
     public Search() {
         
@@ -46,6 +47,10 @@ public class Search {
      */
     public List getMovies() {
         return movies;
+    }
+
+    public List getUpcomingMovies() {
+        return upcomingMovies;
     }
     
     
@@ -79,6 +84,10 @@ public class Search {
      */
     public void setNewMovies(List<Movie> newMovies) {
         this.newMovies = newMovies;
+    }
+
+    public void setUpcomingMovies(List<Movie> upcomingMovies) {
+        this.upcomingMovies = upcomingMovies;
     }
 
     /**
@@ -182,5 +191,18 @@ public class Search {
         newMovies = response.getMovies();
         System.out.println("Returning the temp data");
         return "newMovies.xhtml?faces-redirect=true";
+    }
+    
+    public String getUpcomingMovieList() {
+        System.out.println("Getting the REST data");
+        Gson gson = new Gson();
+        String link = "http://api.rottentomatoes.com/api/public/v1.0"
+                + "/lists/movies/upcoming.json?page_limit=16"
+                + "&page=1&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
+        String data = getData(link);
+        SearchResults response = gson.fromJson(data, SearchResults.class);
+        upcomingMovies = response.getMovies();
+        System.out.println("Returning the temp data");
+        return "upcomingMovies.xhtml?faces-redirect=true";
     }
 }

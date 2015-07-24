@@ -20,6 +20,7 @@ and open the template in the editor.
                 <p:menuitem value="Search" outcome="search.xhtml?faces-redirect=true"/>
                 <p:menuitem value="New Releases" action="#{search.getNewMovieList()}"/>
                 <p:menuitem value="New DVDs" action="#{search.getNewDvdList()}"/>
+                <p:menuitem value="Upcoming Movies" action="#{search.getUpcomingMovieList()}"/>
                 <p:menuitem value="Recommendations" action="#{user.recommend()}"/>
                 <p:menuitem value="Profile" outcome="profile.xhtml?faces-redirect=true"/>
                 <p:menuitem value="Logout" action="#{user.logOut()}" style="float:right"/>

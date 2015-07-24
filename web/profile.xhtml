@@ -15,11 +15,12 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form>
-            <p:tabMenu activeIndex="5">
+            <p:tabMenu activeIndex="6">
                 <p:menuitem value="Welcome" outcome="welcome.xhtml?faces-redirect=true"/>
                 <p:menuitem value="Search" outcome="search.xhtml?faces-redirect=true"/>
                 <p:menuitem value="New Releases" action="#{search.getNewMovieList()}"/>
                 <p:menuitem value="New DVDs" action="#{search.getNewDvdList()}"/>
+                <p:menuitem value="Upcoming Movies" action="#{search.getUpcomingMovieList()}"/>
                 <p:menuitem value="Recommendations" action="#{user.recommend()}"/>
                 <p:menuitem value="Profile" outcome="profile.xhtml?faces-redirect=true"/>
                 <p:menuitem value="Logout" action="#{user.logOut()}" style="float:right"/>
